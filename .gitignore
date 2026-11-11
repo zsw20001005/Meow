@@ -11,6 +11,10 @@ xcuserdata/
 # 编译缓存、应用包、测试截图和临时下载；保留根目录 Package.resolved
 /.build/
 /.build-*/
+/windows/**/bin/
+/windows/**/obj/
+/windows/**/node_modules/
+/windows/Meow.MailBridge/node.exe
 /build/
 /.swiftpm/
 /DerivedData/

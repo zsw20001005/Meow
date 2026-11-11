@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "fps": 24,
+  "cellSize": 512,
+  "columns": 4,
+  "previewOnly": true,
+  "clips": {
+    "idle": {
+      "file": "hd-idle-{page}.png",
+      "frames": 36,
+      "fps": 24,
+      "mode": "loop",
+      "source": "v2-react.mp4",
+      "interval": [
+        0.0,
+        1.5
+      ],
+      "sourceSha256": "574a411dde48f5e821fc87c204ca90c416b42619ce4adf007432031c9a6eacaa"
+    },
+    "walk": {
+      "file": "hd-walk-{page}.png",
+      "frames": 53,
+      "fps": 60,
+      "mode": "loop",
+      "source": "v2-move.mp4",
+      "interval": [
+        1.5,
+        3.85
+      ],
+      "sourceSha256": "45fa1f7f0fb6503b0586d52bd9e376bfc929a7428d697652bff1fb6630217885",
+      "processing": {
+        "method": "Forward complete stride; periodic bidirectional motion compensation including wrap",
+        "originalAtlasSha256": "2f94bdee5a87bd5909d1c97d4997b883811baacbff5548e7aa5f6f6ae7895ac7",
+        "originalFrameInterval": [
+          4,
+          25
+        ],
+        "originalFps": 24,
+        "outputDurationSeconds": 0.8833333333333333,
+        "duplicateEndpoint": false
+      }
+    },
+    "wave": {
+      "file": "hd-wave-{page}.png",
+      "frames": 144,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-greeting.mp4",
+      "interval": [
+        4.0,
+        10.0
+      ],
+      "sourceSha256": "c3ed1389665cfada07fa6e241392a0621efd560eabe149997146d3e0dce9b3de"
+    },
+    "nod": {
+      "file": "hd-nod-{page}.png",
+      "frames": 98,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-greeting.mp4",
+      "interval": [
+        0.0,
+        4.1
+      ],
+      "sourceSha256": "c3ed1389665cfada07fa6e241392a0621efd560eabe149997146d3e0dce9b3de"
+    },
+    "shakeHead": {
+      "file": "hd-shakeHead-{page}.png",
+      "frames": 77,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-react.mp4",
+      "interval": [
+        1.2,
+        4.4
+      ],
+      "sourceSha256": "574a411dde48f5e821fc87c204ca90c416b42619ce4adf007432031c9a6eacaa"
+    },
+    "think": {
+      "file": "hd-think-{page}.png",
+      "frames": 57,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-react.mp4",
+      "interval": [
+        4.4,
+        6.8
+      ],
+      "sourceSha256": "574a411dde48f5e821fc87c204ca90c416b42619ce4adf007432031c9a6eacaa"
+    },
+    "dance": {
+      "file": "hd-dance-{page}.png",
+      "frames": 139,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-relax.mp4",
+      "interval": [
+        1.95,
+        7.75
+      ],
+      "sourceSha256": "9298fe8a044c7a0034b5fdf1a34c394e13d476c4933f2228d0a659917b421331"
+    },
+    "stretch": {
+      "file": "hd-stretch-{page}.png",
+      "frames": 101,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v3-roll-stretch.mp4",
+      "interval": [
+        5.8,
+        10.0
+      ],
+      "sourceSha256": "f1b1e090e08b06463fbff65c5a5e25bdc8d1257f1b1c1975c56a2fb2be4581d7"
+    },
+    "roll": {
+      "file": "hd-roll-{page}.png",
+      "frames": 139,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v3-roll-stretch.mp4",
+      "interval": [
+        0.0,
+        5.8
+      ],
+      "sourceSha256": "f1b1e090e08b06463fbff65c5a5e25bdc8d1257f1b1c1975c56a2fb2be4581d7"
+    },
+    "spin": {
+      "file": "hd-spin-{page}.png",
+      "frames": 190,
+      "fps": 24,
+      "mode": "hold",
+      "source": "spin-r2.mp4",
+      "interval": [
+        0,
+        7.916666666666667
+      ],
+      "sourceSha256": "070b27c188e16c04b4be8fb0092324cecaebd12c0b727fcaf1a5ef972f761010"
+    },
+    "sleep": {
+      "file": "hd-sleep-{page}.png",
+      "frames": 105,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v4-sleep-spin.mp4",
+      "interval": [
+        0.0,
+        4.375
+      ],
+      "sourceSha256": "5e00a78166aedcc6a25688acfd29690af8c1843d8a53e29aa336384ae9251021"
+    },
+    "jump": {
+      "file": "hd-jump-{page}.png",
+      "frames": 71,
+      "fps": 24,
+      "mode": "hold",
+      "source": "v2-move.mp4",
+      "interval": [
+        3.85,
+        6.8
+      ],
+      "sourceSha256": "45fa1f7f0fb6503b0586d52bd9e376bfc929a7428d697652bff1fb6630217885"
+    },
+    "eat": {
+      "file": "hd-eat-{page}.png",
+      "frames": 129,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-r2-01-props.mp4",
+      "interval": [
+        0.0,
+        5.375
+      ],
+      "sourceSha256": "30a25ad87f859b523d68fa004d223fa0d477c780233753cd80f0175f3aedec95"
+    },
+    "play": {
+      "file": "hd-play-{page}.png",
+      "frames": 125,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-01-props.mp4",
+      "interval": [
+        4.75,
+        9.958333333333334
+      ],
+      "sourceSha256": "471e864eca047136ed5d0b3d68bbd2f03ab20364900da6d675511d33339d7da2"
+    },
+    "talk": {
+      "file": "hd-talk-{page}.png",
+      "frames": 126,
+      "fps": 24,
+      "mode": "loop",
+      "source": "google-batch-03-peek-talk.mp4",
+      "interval": [
+        4.75,
+        10.0
+      ],
+      "sourceSha256": "ad49dc21b9dc11667703c17fc3a6e4bef6219a3f14778a0b233feadf51433cf3"
+    },
+    "peek": {
+      "file": "hd-peek-{page}.png",
+      "frames": 114,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-03-peek-talk.mp4",
+      "interval": [
+        0.0,
+        4.75
+      ],
+      "sourceSha256": "ad49dc21b9dc11667703c17fc3a6e4bef6219a3f14778a0b233feadf51433cf3"
+    },
+    "land": {
+      "file": "hd-land-{page}.png",
+      "frames": 45,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-02-motion.mp4",
+      "interval": [
+        6.125,
+        8.0
+      ],
+      "sourceSha256": "c38ab075022b0aabbe17fab0cd3468811adecccbb96cca8eefd902b67af87d8d"
+    },
+    "happy": {
+      "file": "hd-happy-{page}.png",
+      "frames": 75,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-04-positive.mp4",
+      "interval": [
+        0.0,
+        3.125
+      ],
+      "sourceSha256": "c2ada9bd016f02f17c9aa94f6e0742b9b9cdb5ce562cb781a28772b9fd1a1402"
+    },
+    "love": {
+      "file": "hd-love-{page}.png",
+      "frames": 75,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-04-positive.mp4",
+      "interval": [
+        3.125,
+        6.25
+      ],
+      "sourceSha256": "c2ada9bd016f02f17c9aa94f6e0742b9b9cdb5ce562cb781a28772b9fd1a1402"
+    },
+    "shy": {
+      "file": "hd-shy-{page}.png",
+      "frames": 90,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-04-positive.mp4",
+      "interval": [
+        6.25,
+        10.0
+      ],
+      "sourceSha256": "c2ada9bd016f02f17c9aa94f6e0742b9b9cdb5ce562cb781a28772b9fd1a1402"
+    },
+    "curious": {
+      "file": "hd-curious-{page}.png",
+      "frames": 74,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-05-reactive.mp4",
+      "interval": [
+        0.0,
+        3.0833333333333335
+      ],
+      "sourceSha256": "e75432415596a345ca3bf9e40be50e8ef0b504cc90619faaf97dcb381423e35b"
+    },
+    "surprised": {
+      "file": "hd-surprised-{page}.png",
+      "frames": 68,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-05-reactive.mp4",
+      "interval": [
+        3.0833333333333335,
+        5.916666666666667
+      ],
+      "sourceSha256": "e75432415596a345ca3bf9e40be50e8ef0b504cc90619faaf97dcb381423e35b"
+    },
+    "sad": {
+      "file": "hd-sad-{page}.png",
+      "frames": 58,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-06-needs.mp4",
+      "interval": [
+        0.0,
+        2.4166666666666665
+      ],
+      "sourceSha256": "8e9d0092032275de7db61b5648150492ebb5e2680adc9fdedb643ec46efce31e"
+    },
+    "sleepy": {
+      "file": "hd-sleepy-{page}.png",
+      "frames": 45,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-06-needs.mp4",
+      "interval": [
+        2.4166666666666665,
+        4.291666666666667
+      ],
+      "sourceSha256": "8e9d0092032275de7db61b5648150492ebb5e2680adc9fdedb643ec46efce31e"
+    },
+    "hungry": {
+      "file": "hd-hungry-{page}.png",
+      "frames": 53,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-06-needs.mp4",
+      "interval": [
+        4.291666666666667,
+        6.5
+      ],
+      "sourceSha256": "8e9d0092032275de7db61b5648150492ebb5e2680adc9fdedb643ec46efce31e"
+    },
+    "dizzy": {
+      "file": "hd-dizzy-{page}.png",
+      "frames": 84,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-batch-06-needs.mp4",
+      "interval": [
+        6.5,
+        10.0
+      ],
+      "sourceSha256": "8e9d0092032275de7db61b5648150492ebb5e2680adc9fdedb643ec46efce31e"
+    },
+    "angry": {
+      "file": "hd-angry-{page}.png",
+      "frames": 104,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-r2-03-emotions.mp4",
+      "interval": [
+        0.0,
+        4.333333333333333
+      ],
+      "sourceSha256": "f5cb78cbfb0efed165f559660ce7a47cf1ad6aeeb9d29144e13162c1dab58d74"
+    },
+    "drag": {
+      "file": "hd-drag-{page}.png",
+      "frames": 36,
+      "fps": 24,
+      "mode": "hold",
+      "source": "google-r2-02-motion.mp4",
+      "interval": [
+        1.5,
+        3.0
+      ],
+      "sourceSha256": "da0d883b0f91a824c00ac443236cf6b04400672789ff850e47e27399771bec09"
+    },
+    "fall": {
+      "file": "hd-drag-{page}.png",
+      "frames": 36,
+      "fps": 24,
+      "mode": "still",
+      "source": "google-r2-02-motion.mp4",
+      "interval": [
+        1.5,
+        3.0
+      ],
+      "sourceSha256": "da0d883b0f91a824c00ac443236cf6b04400672789ff850e47e27399771bec09",
+      "stillFrame": 35
+    }
+  },
+  "pageFrames": 24
+}

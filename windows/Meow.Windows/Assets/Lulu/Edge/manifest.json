@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "width": 352,
+  "height": 512,
+  "columns": 4,
+  "pageFrames": 24,
+  "frames": 201,
+  "fps": 24,
+  "anchorX": 308.9181084198385,
+  "source": "google-edge-loop-r1.mp4",
+  "sourceSha256": "9da33c4da5e0e9abe113b2de185b0cb8337c40642b02d6fde825989562b5ccef",
+  "crop": [
+    63,
+    239,
+    641,
+    1106
+  ],
+  "sourceFrames": 190,
+  "joinFrames": 11,
+  "colorMatch": {
+    "reference": "Video/hd-idle-0.png frame 0",
+    "labOffsets": [
+      [
+        2.0,
+        3.0,
+        6.0
+      ],
+      [
+        8.0,
+        5.0,
+        4.0
+      ],
+      [
+        -3.0,
+        0.0,
+        -1.0
+      ]
+    ],
+    "midtoneLift": 14.0,
+    "alphaUnchanged": true
+  }
+}

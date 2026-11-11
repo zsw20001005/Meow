@@ -33,6 +33,8 @@
 
 ## 直接安装
 
+Windows 客户端已接入聊天、记忆、备忘录、热点、信箱及本地推理，并支持 GPT、Claude、Gemini、DeepSeek、通义千问、Kimi 等多服务商 API 配置，构建和验收边界见 [Windows 说明](docs/WINDOWS.md)。下述安装磁盘流程适用于 Mac。
+
 普通使用者可以直接使用发布者提供的 **Meow 安装磁盘（`.dmg`）**，无需下载源码、安装开发工具或下载本地模型。
 
 1. 在 M1 或更新的 Apple 芯片、macOS 14.4 或更高版本的 Mac 上打开安装磁盘。

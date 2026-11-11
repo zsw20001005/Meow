@@ -1,0 +1,62 @@
+*{box-sizing:border-box}
+body{margin:0;background:#f9f7f2;color:#403b31;font-family:Inter,"Microsoft YaHei",sans-serif}
+button,a,input{ -webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+header{height:85px;max-width:1520px;margin:auto;padding:0 44px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e4da}
+.brand{font-size:27px;font-weight:800;letter-spacing:-1px;color:#51432c;text-decoration:none}
+.brand span{font-size:12px;font-weight:400;letter-spacing:2px;margin-left:18px;color:#827b6a}
+.edition{font-size:12px;color:#99917f;letter-spacing:1px}
+main{max-width:1520px;min-height:calc(100vh - 85px);margin:auto;display:grid;grid-template-columns:minmax(450px,1fr) 365px;padding:26px 44px 30px;gap:38px}
+.stage{min-height:520px;height:calc(100vh - 141px);max-height:1000px;border-radius:24px;background:#eee9df;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px #e4ded1}
+#viewport{position:absolute;inset:0}
+canvas{display:block;touch-action:none}
+.stage-top,.stage-bottom{position:absolute;left:25px;right:25px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.stage-top{top:23px}
+.stage-bottom{bottom:24px;color:#8a8171;font-size:12px}
+.stage-top>* ,.stage-bottom>*{pointer-events:auto}
+.pill{background:#ffffffbd;border:1px solid #fff9;border-radius:30px;padding:9px 13px;font-size:12px;display:flex;gap:8px;align-items:center}
+.pill i{height:6px;width:6px;border-radius:100%;background:#7c9e7a}
+.text-button{border:0;background:transparent;color:#807665;font-size:12px}
+.views{display:flex;gap:3px;background:#fff9;padding:4px;border-radius:12px}
+.views button{border:0;border-radius:8px;padding:7px 13px;background:transparent;color:#6a6255;font-size:12px}
+.views button.active{background:white;box-shadow:0 2px 6px #79674315}
+aside{padding:28px 0 15px}
+.eyebrow{font-size:11px;letter-spacing:3px;color:#9f8556;margin-bottom:18px}
+h1{font-weight:600;font-size:31px;line-height:1.5;letter-spacing:-1px;margin:0 0 16px}
+.intro{font-size:14px;line-height:1.9;color:#888072;margin:0 0 29px}
+.actions{display:flex;gap:9px;margin-bottom:28px}
+.primary{background:#c68239;color:white;border:0;border-radius:12px;padding:15px 19px;flex:1;display:flex;justify-content:space-between;box-shadow:0 4px 10px #a8773420}
+.primary:hover{background:#b97830}
+.secondary{border:1px solid #ddd7cb;background:#fff9;border-radius:12px;color:#726653;padding:12px 18px;font-size:13px}
+.slider-label{display:flex;justify-content:space-between;font-size:13px}
+.slider-label output{font-size:12px;color:#9c845c}
+input[type=range]{width:100%;accent-color:#bb874a;margin:17px 0 9px;cursor:pointer}
+.range-caption{display:flex;justify-content:space-between;font-size:11px;color:#aaa08e}
+.divider{height:1px;background:#e8e3d8;margin:29px 0 24px}
+.reference{display:flex;gap:14px;align-items:center}
+.reference img{width:76px;height:92px;object-fit:contain;background:#fff;border:1px solid #ede7db;border-radius:12px}
+.reference strong{font-size:13px;font-weight:500}
+.reference p{font-size:12px;line-height:1.8;color:#9a917f;margin:8px 0}
+details{margin-top:25px;border-top:1px solid #e8e3d8;padding-top:18px}
+summary{font-size:12px;color:#8d7a5a;cursor:pointer}
+.toggle{font-size:12px;display:flex;gap:8px;margin-top:17px;align-items:center}
+.toggle input{accent-color:#b58140}
+.detail-copy{font-size:11px;line-height:1.8;color:#9b927f}
+.full{width:100%;font-size:12px;padding:10px}
+.footnote{color:#aca393;font-size:11px;margin-top:24px}
+#loading{position:absolute;inset:0;display:grid;place-items:center;color:#8d7656;background:#eee9df;z-index:3}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #916a3e;outline-offset:4px}
+@media(max-width:950px){header{padding:0 23px}
+main{padding:20px 23px;gap:24px;grid-template-columns:minmax(350px,1fr) 290px}
+h1{font-size:26px}
+.stage{min-height:480px}
+aside{padding-top:18px}
+}
+@media(max-width:720px){header{height:70px}
+.edition{font-size:10px}
+main{display:flex;flex-direction:column;padding:15px}
+.stage{height:570px;min-height:450px;max-height:75vh}
+aside{padding:10px 12px;max-width:500px;margin:auto}
+.stage-bottom{left:17px;right:17px;gap:6px}
+.views button{padding:7px 10px}
+}

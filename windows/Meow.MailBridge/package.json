@@ -1,0 +1,1 @@
+{"name":"meow-mail-bridge","private":true,"version":"1.0.0","type":"module","dependencies":{"@number0/iroh":"1.2.0","@number0/iroh-win32-x64-msvc":"1.2.0"}}
