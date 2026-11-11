@@ -32,6 +32,13 @@ Copy-Item -LiteralPath (Join-Path $projectRoot 'LICENSE') -Destination (Join-Pat
 $sdkDirectory = Split-Path -Parent $Dotnet
 Copy-Item -LiteralPath (Join-Path $sdkDirectory 'LICENSE.txt') -Destination (Join-Path $licenses 'dotnet-LICENSE.txt')
 Copy-Item -LiteralPath (Join-Path $sdkDirectory 'ThirdPartyNotices.txt') -Destination (Join-Path $licenses 'dotnet-ThirdPartyNotices.txt')
+foreach ($notice in @('OpenCvSharp-LICENSE.txt', 'OpenCV-LICENSE.txt')) {
+    Copy-Item -LiteralPath (Join-Path $projectRoot "build/installer-dependencies/$notice") -Destination (Join-Path $licenses $notice)
+}
+# Playback uses PNG atlases; only optical flow needs OpenCV. Do not distribute
+# the optional FFmpeg video-I/O plugin that this application never loads.
+$unusedVideoPlugin = Join-Path $staging 'opencv_videoio_ffmpeg4130_64.dll'
+if (Test-Path -LiteralPath $unusedVideoPlugin) { Remove-Item -LiteralPath $unusedVideoPlugin }
 if ($IncludeLocalModel) {
     $engine = Join-Path $projectRoot 'build/local-engine'
     $provenance = Get-Content (Join-Path $engine 'provenance.json') -Raw | ConvertFrom-Json
