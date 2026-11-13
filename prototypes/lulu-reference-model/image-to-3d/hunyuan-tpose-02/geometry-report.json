@@ -1,0 +1,70 @@
+{
+  "source": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\hunyuan-tpose-02\\downloads\\7b606394861ec4a34d08b2979dd40f292d4e1eceb822bea9f4aab6b5b67dc782\\white_mesh.glb",
+  "normalization_height": 3,
+  "objects": [
+    {
+      "name": "geometry_0",
+      "vertices": 632832,
+      "faces_before_cleanup": 1265848,
+      "faces": 1265655
+    }
+  ],
+  "geometry": {
+    "objects": {
+      "geometry_0": {
+        "verts": 632832,
+        "faces": 1265655,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 4,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.490400051,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          2.5296,
+          1.8027,
+          3.0
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [
+      "geometry_0: 4 zero-area faces."
+    ],
+    "info": [],
+    "units": "m",
+    "overall": {
+      "min": [
+        -1.2648247480392456,
+        -0.9013694524765015,
+        0.0
+      ],
+      "max": [
+        1.2648247480392456,
+        0.9013694524765015,
+        3.0
+      ],
+      "size": [
+        2.529649496078491,
+        1.802738904953003,
+        3.0
+      ],
+      "contact_tolerance": 0.004318448124891881,
+      "parts": 1
+    },
+    "contacts": [],
+    "summary": {
+      "errors": 0,
+      "warnings": 1
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 1 warnings\n  overall size (m): (2.530, 1.803, 3.000)  parts: 1  contact tol: 0.0043\n  [WARNING] geometry_0: 4 zero-area faces.\n  objects:\n    geometry_0: dims (2.530, 1.803, 3.000) verts 632832 faces 1265655 islands 1"
+  }
+}

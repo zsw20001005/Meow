@@ -1,0 +1,8 @@
+{
+  "service": "tencent/Hunyuan3D-2mv",
+  "input": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\references-v2\\t-pose-views-v1",
+  "steps": 5,
+  "octree_resolution": 512,
+  "seed": 1234,
+  "notes": "Turbo native 5-step setting; highest UI octree resolution. Three-quarter image reserved for QA, not mislabeled as right view."
+}

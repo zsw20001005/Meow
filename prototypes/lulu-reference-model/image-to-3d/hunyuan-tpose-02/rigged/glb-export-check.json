@@ -1,0 +1,18 @@
+{
+  "magic": "glTF",
+  "version": 2,
+  "byte_size": 10862668,
+  "declared_size": 10862668,
+  "skin_count": 1,
+  "joint_count": [
+    22
+  ],
+  "animations": [
+    {
+      "name": "Lulu_Joint_Check",
+      "channels": 66
+    }
+  ],
+  "meshes": 1,
+  "shape_keys": false
+}

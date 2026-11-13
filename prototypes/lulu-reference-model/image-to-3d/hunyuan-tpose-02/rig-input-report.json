@@ -1,0 +1,66 @@
+{
+  "target_faces": 200000,
+  "objects": [
+    {
+      "name": "geometry_0",
+      "faces_before": 1265655,
+      "faces_after": 200002
+    }
+  ],
+  "geometry": {
+    "objects": {
+      "geometry_0": {
+        "verts": 99995,
+        "faces": 200002,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.490212818,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          2.5296,
+          1.8028,
+          3.0
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "info": [],
+    "units": "m",
+    "overall": {
+      "min": [
+        -1.264821171760559,
+        -0.9013575315475464,
+        -1.3256218153401278e-05
+      ],
+      "max": [
+        1.264760136604309,
+        0.9014409780502319,
+        2.9999754428863525
+      ],
+      "size": [
+        2.529581308364868,
+        1.8027985095977783,
+        2.9999887943267822
+      ],
+      "contact_tolerance": 0.004318425350987839,
+      "parts": 1
+    },
+    "contacts": [],
+    "summary": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (2.530, 1.803, 3.000)  parts: 1  contact tol: 0.0043\n  objects:\n    geometry_0: dims (2.530, 1.803, 3.000) verts 99995 faces 200002 islands 1"
+  }
+}

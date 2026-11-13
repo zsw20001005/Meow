@@ -1,0 +1,67 @@
+{
+  "fps": 30,
+  "source": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\hunyuan-tpose-02\\rigged\\Lulu-Tpose-Rig-Preview.blend",
+  "notes": "Gray-model motion prototypes. No facial animation. Walk has forward root motion; turn is actual rotating skeleton with alternating steps and a fixed camera. Blender-only deformation corrections retained.",
+  "clips": [
+    {
+      "slug": "idle",
+      "action": "Lulu_Idle",
+      "frames": 120,
+      "duration": 4.0,
+      "loop": true,
+      "max_ik_reach_excess": 0.0,
+      "max_ankle_target_error": 3.332000937312528e-08,
+      "max_planted_ankle_step": 0.0,
+      "root_motion": false,
+      "sampled_playback_ankle_error": 3.332000937312528e-08
+    },
+    {
+      "slug": "look",
+      "action": "Lulu_LookAround",
+      "frames": 144,
+      "duration": 4.8,
+      "loop": true,
+      "max_ik_reach_excess": 0.0,
+      "max_ankle_target_error": 3.332000937312528e-08,
+      "max_planted_ankle_step": 0.0,
+      "root_motion": false,
+      "sampled_playback_ankle_error": 3.332000937312528e-08
+    },
+    {
+      "slug": "wave",
+      "action": "Lulu_Wave",
+      "frames": 144,
+      "duration": 4.8,
+      "loop": true,
+      "max_ik_reach_excess": 0.0,
+      "max_ankle_target_error": 3.332000937312528e-08,
+      "max_planted_ankle_step": 0.0,
+      "root_motion": false,
+      "sampled_playback_ankle_error": 3.332000937312528e-08
+    },
+    {
+      "slug": "walk",
+      "action": "Lulu_WalkSteps",
+      "frames": 128,
+      "duration": 4.266666666666667,
+      "loop": false,
+      "max_ik_reach_excess": 0.0,
+      "max_ankle_target_error": 1.6323404237781945e-07,
+      "max_planted_ankle_step": 1.9314112360500873e-07,
+      "root_motion": true,
+      "sampled_playback_ankle_error": 9.541398640621973e-08
+    },
+    {
+      "slug": "turn",
+      "action": "Lulu_StepTurn360",
+      "frames": 186,
+      "duration": 6.2,
+      "loop": true,
+      "max_ik_reach_excess": 0.0,
+      "max_ankle_target_error": 2.2794393510786228e-07,
+      "max_planted_ankle_step": 2.2797437430611613e-07,
+      "root_motion": false,
+      "sampled_playback_ankle_error": 1.1470023034766802e-07
+    }
+  ]
+}

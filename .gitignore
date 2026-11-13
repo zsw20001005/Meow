@@ -52,3 +52,9 @@ __pycache__/
 # 本地模型文件另行下载（见 model/README.md）；云端版无需模型权重
 /model/*
 !/model/README.md
+
+# Rebuildable output and automatic backups for the current 3D prototype.
+/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/**/*.blend[0-9]
+/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/downloads/
+/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/rigged/preview-frames/
+/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/motion-set-01/frames/

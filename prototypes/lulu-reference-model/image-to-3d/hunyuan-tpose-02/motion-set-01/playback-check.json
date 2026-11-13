@@ -1,0 +1,57 @@
+{
+  "idle": {
+    "end_pose_max_difference_after_root_translation": 0.0,
+    "start_pose_difference_from_idle": 0.0,
+    "root_translation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sampled_minimum_surface_z": -0.001121560693718493,
+    "all_finite": true
+  },
+  "look": {
+    "end_pose_max_difference_after_root_translation": 0.0,
+    "start_pose_difference_from_idle": 0.0,
+    "root_translation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sampled_minimum_surface_z": -0.001121560693718493,
+    "all_finite": true
+  },
+  "wave": {
+    "end_pose_max_difference_after_root_translation": 0.0,
+    "start_pose_difference_from_idle": 0.0,
+    "root_translation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sampled_minimum_surface_z": -0.001121560693718493,
+    "all_finite": true
+  },
+  "walk": {
+    "end_pose_max_difference_after_root_translation": 2.384185791015625e-07,
+    "start_pose_difference_from_idle": 0.0,
+    "root_translation": [
+      0.0,
+      -0.7200000286102295,
+      0.0
+    ],
+    "sampled_minimum_surface_z": -0.0011215700069442391,
+    "all_finite": true
+  },
+  "turn": {
+    "end_pose_max_difference_after_root_translation": 2.5331974029541016e-07,
+    "start_pose_difference_from_idle": 0.0,
+    "root_translation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "sampled_minimum_surface_z": -0.001121560693718493,
+    "all_finite": true
+  }
+}

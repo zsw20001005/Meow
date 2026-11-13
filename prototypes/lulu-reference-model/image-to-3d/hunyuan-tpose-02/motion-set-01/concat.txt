@@ -1,0 +1,5 @@
+file 'lulu-idle.mp4'
+file 'lulu-look.mp4'
+file 'lulu-wave.mp4'
+file 'lulu-walk.mp4'
+file 'lulu-turn.mp4'
