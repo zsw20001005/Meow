@@ -1,0 +1,325 @@
+{
+  "height": 3,
+  "joint_chains": {
+    "Arm.L": [
+      [
+        0.63,
+        0.04,
+        1.25
+      ],
+      [
+        0.78,
+        -0.24,
+        1.23
+      ],
+      [
+        0.64,
+        -0.6,
+        1.5
+      ],
+      [
+        0.55,
+        -0.74,
+        1.64
+      ]
+    ],
+    "Arm.R": [
+      [
+        -0.6,
+        0.19,
+        1.24
+      ],
+      [
+        -0.76,
+        0.19,
+        0.98
+      ],
+      [
+        -0.74,
+        0.18,
+        0.73
+      ],
+      [
+        -0.7,
+        0.18,
+        0.61
+      ]
+    ],
+    "Leg.L": [
+      [
+        0.39,
+        0.04,
+        0.64
+      ],
+      [
+        0.39,
+        0.01,
+        0.36
+      ],
+      [
+        0.4,
+        -0.04,
+        0.16
+      ],
+      [
+        0.4,
+        -0.27,
+        0.1
+      ]
+    ],
+    "Leg.R": [
+      [
+        -0.36,
+        0.04,
+        0.64
+      ],
+      [
+        -0.36,
+        0.01,
+        0.36
+      ],
+      [
+        -0.37,
+        -0.04,
+        0.16
+      ],
+      [
+        -0.37,
+        -0.27,
+        0.1
+      ]
+    ]
+  },
+  "controls": [
+    {
+      "name": "UpperArm.L",
+      "limit": 8,
+      "axis": "X",
+      "vertices": 7437
+    },
+    {
+      "name": "Forearm.L",
+      "limit": 10,
+      "axis": "X",
+      "vertices": 14771
+    },
+    {
+      "name": "Hand.L",
+      "limit": 10,
+      "axis": "X",
+      "vertices": 13682
+    },
+    {
+      "name": "UpperArm.R",
+      "limit": 18,
+      "axis": "X",
+      "vertices": 5509
+    },
+    {
+      "name": "Forearm.R",
+      "limit": 22,
+      "axis": "X",
+      "vertices": 7731
+    },
+    {
+      "name": "Hand.R",
+      "limit": 15,
+      "axis": "X",
+      "vertices": 3881
+    },
+    {
+      "name": "Thigh.L",
+      "limit": 15,
+      "axis": "X",
+      "vertices": 29301
+    },
+    {
+      "name": "Shin.L",
+      "limit": 22,
+      "axis": "X",
+      "vertices": 25216
+    },
+    {
+      "name": "Foot.L",
+      "limit": 15,
+      "axis": "X",
+      "vertices": 11179
+    },
+    {
+      "name": "Thigh.R",
+      "limit": 15,
+      "axis": "X",
+      "vertices": 28267
+    },
+    {
+      "name": "Shin.R",
+      "limit": 22,
+      "axis": "X",
+      "vertices": 20736
+    },
+    {
+      "name": "Foot.R",
+      "limit": 15,
+      "axis": "X",
+      "vertices": 12319
+    }
+  ],
+  "clips": {
+    "Idle": 6.0,
+    "Greeting": 6.0,
+    "Smile": 4.0,
+    "Curious": 4.0,
+    "Arms": 5.0,
+    "Legs": 5.0,
+    "Steps": 6.0
+  },
+  "weights_max_error": 3.3306690738754696e-16,
+  "unweighted_vertices": 0,
+  "scope": "12 limb joints + pelvis, bounded FK deformation study. Raised hand still fused to cheek; no full walking/contact solver.",
+  "health": {
+    "objects": {
+      "Lulu — Spencer0131 — painted preview": {
+        "verts": 242039,
+        "faces": 484078,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.914626161,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          1.858,
+          1.6432,
+          3.0
+        ],
+        "islands": 1
+      },
+      "Lulu rounded muzzle": {
+        "verts": 8066,
+        "faces": 8192,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 0.562320477,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          1.5636,
+          0.84,
+          0.8408
+        ],
+        "islands": 1
+      },
+      "Eye L sclera": {
+        "verts": 2498,
+        "faces": 2560,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 0.001054317,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.1967,
+          0.1797,
+          0.2233
+        ],
+        "islands": 1
+      },
+      "Eye R sclera": {
+        "verts": 2498,
+        "faces": 2560,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 0.001053811,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.1967,
+          0.1904,
+          0.2233
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "info": [
+      "3 expected embedded contacts (expect_embedded)."
+    ],
+    "units": "m",
+    "overall": {
+      "min": [
+        -0.9289910793304443,
+        -0.9399999380111694,
+        -3.584004648615746e-09
+      ],
+      "max": [
+        0.9289910793304443,
+        0.7615928649902344,
+        3.0
+      ],
+      "size": [
+        1.8579821586608887,
+        1.7015928030014038,
+        3.0
+      ],
+      "contact_tolerance": 0.003917590563274436,
+      "parts": 4
+    },
+    "contacts": [
+      {
+        "a": "Lulu — Spencer0131 — painted preview",
+        "b": "Lulu rounded muzzle",
+        "depth": 0.6135124564170837,
+        "expected": true
+      },
+      {
+        "a": "Lulu — Spencer0131 — painted preview",
+        "b": "Eye L sclera",
+        "depth": 0.020564105361700058,
+        "expected": true
+      },
+      {
+        "a": "Lulu — Spencer0131 — painted preview",
+        "b": "Eye R sclera",
+        "depth": 0.02024075575172901,
+        "expected": true
+      }
+    ],
+    "summary": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (1.858, 1.702, 3.000)  parts: 4  contact tol: 0.0039\n  [INFO] 3 expected embedded contacts (expect_embedded).\n  objects:\n    Lulu — Spencer0131 — painted preview: dims (1.858, 1.643, 3.000) verts 242039 faces 484078 islands 1\n    Lulu rounded muzzle: dims (1.564, 0.840, 0.841) verts 8066 faces 8192 islands 1\n    Eye L sclera: dims (0.197, 0.180, 0.223) verts 2498 faces 2560 islands 1\n    Eye R sclera: dims (0.197, 0.190, 0.223) verts 2498 faces 2560 islands 1"
+  }
+}

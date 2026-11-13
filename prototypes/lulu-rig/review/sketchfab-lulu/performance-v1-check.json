@@ -1,0 +1,51 @@
+{
+  "clips": {
+    "Idle": {
+      "duration": 6,
+      "maxMotion": 0.019132939965643914,
+      "seam": 0
+    },
+    "Greeting": {
+      "duration": 6,
+      "maxMotion": 0.19284734945019139,
+      "seam": 0
+    },
+    "Smile": {
+      "duration": 4,
+      "maxMotion": 0.11484269882955,
+      "seam": 0
+    },
+    "Curious": {
+      "duration": 4,
+      "maxMotion": 0.1660104731420751,
+      "seam": 0
+    }
+  },
+  "transitions": [
+    {
+      "to": "Greeting",
+      "jump": 0
+    },
+    {
+      "to": "Smile",
+      "jump": 0
+    },
+    {
+      "to": "Curious",
+      "jump": 0
+    },
+    {
+      "to": "Greeting",
+      "jump": 0
+    },
+    {
+      "to": "Idle",
+      "jump": 0
+    }
+  ],
+  "performance": {
+    "earlyGaze": 0.9948979616165161,
+    "earlySmile": 0,
+    "heldSmile": 1
+  }
+}

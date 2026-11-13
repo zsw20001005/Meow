@@ -12,6 +12,7 @@ public sealed class PetDrawing : FrameworkElement
     private string action = "idle";
     private double started;
     private readonly LuluVideo video = new();
+    private readonly LuluPlaybackFrame edgePlayback = new();
     private int replay;
     private bool bedAnchor;
     private DrawingGroup? lastCharacter;
@@ -58,7 +59,12 @@ public sealed class PetDrawing : FrameworkElement
     private LuluBedScene? bedScene;
     internal LuluBedScene? BedScene { get => bedScene; set { bedScene = value; if (value is not null) bedAnchor = true; } }
     internal void FinishBedScene() { BedScene = null; video.ResumeAfterBed(Time); }
-    internal bool BedApproaching { get; set; }
+    private bool bedApproaching;
+    internal bool BedApproaching
+    {
+        get => bedApproaching;
+        set { bedApproaching = value; if (!value) roomWalk = null; }
+    }
     public double WalkPhase { get; set; }
     public double LookAway { get; set; }
     public double Squash { get; set; }
@@ -191,7 +197,7 @@ public sealed class PetDrawing : FrameworkElement
     {
         if (LuluEdgeAnimation.Available)
         {
-            LuluEdgeAnimation.Draw(c, Wall, Time - wallStarted, Reveal, ActualWidth, ActualHeight);
+            LuluEdgeAnimation.Draw(c, Wall, Time - wallStarted, Reveal, ActualWidth, ActualHeight, edgePlayback);
             return;
         }
         double cutoff = 108 + 68 * Math.Clamp(Reveal, 0, 1.06), h = 132 + 44 * Math.Clamp(Reveal, 0, 1);

@@ -22,6 +22,7 @@ public sealed partial class PetWindow : Window
     private Point startMouse, startWindow, lastMouse;
     private double lastMove;
     private Dashboard? dashboard;
+    internal Dictionary<string, Window> FeatureWindows { get; } = [];
     public CompanionService Features { get; }
     public MailboxService Mailbox { get; }
     internal LocalEngine Local { get; } = new();
@@ -32,10 +33,7 @@ public sealed partial class PetWindow : Window
     public PetWindow(Store store)
     {
         this.store = store;
-        LuluBedScene.WarmUp();
-        LuluVideo.WarmUp();
-        LuluEdgeAnimation.WarmUp();
-        LuluPoseTransition.WarmUp();
+        WarmAnimations();
         Features = new CompanionService(store); Mailbox = new MailboxService(store);
         Title = "Meow · 张噜噜"; Width = Height = 230 * store.Data.Scale;
         WindowStyle = WindowStyle.None; ResizeMode = ResizeMode.NoResize; AllowsTransparency = true;
@@ -62,10 +60,22 @@ public sealed partial class PetWindow : Window
         Item("站住 / 停下来", () => Animate("idle"));
         Item("保持当前表情或姿势", HoldCurrentState);
         Item("恢复自由活动", () => { Animate("free"); store.Data.Wander = true; Save(); });
-        Item("退出噜噜", () => { closing = true; Close(); Application.Current.Shutdown(); });
+        Item("退出噜噜", ExitApp);
         pet.ContextMenu = menu;
-        Closing += (_, e) => { if (!closing) { e.Cancel = true; return; } CompositionTarget.Rendering -= Tick; Features.Stop(); Mailbox.Dispose(); Local.Dispose(); bubble.Close(); dashboard?.Shutdown(); Save(); };
+        Closing += (_, e) => { if (!closing) { e.Cancel = true; return; } CompositionTarget.Rendering -= Tick; Features.Stop(); Mailbox.Dispose(); Local.Dispose(); bubble.Close(); dashboard?.Shutdown(); foreach (var window in FeatureWindows.Values.ToArray()) window.Close(); Save(); };
         Loaded += (_, _) => { lastTick = clock.Elapsed.TotalSeconds; CompositionTarget.Rendering += Tick; Clamp(); Say("我是张噜噜。慢慢来，我在这里陪你。双击我聊聊天吧。"); if (store.Data.ProtectedKey.Length == 0) OpenDashboard(); };
+    }
+    public void ExitApp()
+    {
+        if (closing) return;
+        closing = true; Close(); Application.Current.Shutdown();
+    }
+    internal static void WarmAnimations()
+    {
+        LuluBedScene.WarmUp();
+        LuluVideo.WarmUp();
+        LuluEdgeAnimation.WarmUp();
+        LuluPoseTransition.WarmUp();
     }
     private Point CursorPosition()
     {
@@ -107,6 +117,13 @@ public sealed partial class PetWindow : Window
     }
     private void AnimateCore(string action, bool speak = true, bool hold = false)
     {
+        string requestedClip = action.StartsWith("emotion:", StringComparison.Ordinal) ? action[8..] : action;
+        if (requestedClip == "sulking") requestedClip = "sad";
+        if (LuluVideo.MissingClips.Contains(requestedClip))
+        {
+            if (speak) Say("这个动作或表情需要“动作表情扩展包”，安装后重启噜噜就能使用。设置里可以查看扩展状态。");
+            return;
+        }
         bool wasStrolling = strollPhase.Length > 0;
         CancelStroll();
         if (TryBedAction(action, speak, hold)) return;
@@ -119,7 +136,7 @@ public sealed partial class PetWindow : Window
             return;
         }
         if (action != "sleep") ReleaseWall(); nightWake = clock.Elapsed.TotalSeconds + 600;
-        if (action == "climb") { JumpToWindow(); return; }
+        if (action == "climb") { JumpToWindow(false); return; }
         if (action == "come") { var p = CursorPosition(); Left = p.X - Width / 2; Top = p.Y - Height * .6; platform = IntPtr.Zero; falling = true; Clamp(); action = "wave"; }
         if (action == "down") { platform = IntPtr.Zero; falling = true; action = "idle"; }
         if (action == "jump") { platform = IntPtr.Zero; velocityY = -650; falling = true; }
@@ -142,7 +159,7 @@ public sealed partial class PetWindow : Window
         if (entry is null) store.Data.Experiences.Add(entry = new Experience { Day = day, Kind = kind }); entry.Count++; Save();
     }
     public void OpenFeature(string kind) { if (dashboard is null) { dashboard = new Dashboard(store, this); dashboard.Closed += (_, _) => dashboard = null; } dashboard.OpenFeature(kind); }
-    public void OpenDashboard() { if (dashboard is null) { dashboard = new Dashboard(store, this); dashboard.Closed += (_, _) => dashboard = null; } dashboard.Show(); dashboard.Activate(); }
+    public void OpenDashboard() { if (dashboard is null) { dashboard = new Dashboard(store, this); dashboard.Closed += (_, _) => dashboard = null; } dashboard.Show(); if (dashboard.WindowState == WindowState.Minimized) dashboard.WindowState = WindowState.Normal; dashboard.Activate(); }
     public void ApplyScale()
     {
         bool bed = pet.BedScene is not null;

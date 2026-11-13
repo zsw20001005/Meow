@@ -1,0 +1,1 @@
+'You have exceeded your ZeroGPU quota (135s requested vs. 69s left). Try again in 5:42:54. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens'

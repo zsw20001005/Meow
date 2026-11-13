@@ -1,0 +1,15 @@
+{
+  "stage": "Full-body walking prototype",
+  "master_read_only": "rig-review/iter_05/lulu-wave-test.blend",
+  "generator": "rig_walk.py",
+  "final_candidate": "walk-review/iter_10/lulu-walk.blend",
+  "deformation_controls": ["Hips", "Torso", "Head", "UpperArm.L", "LowerArm.L", "Hand.L", "UpperArm.R", "LowerArm.R", "Hand.R", "Thigh.L", "Shin.L", "Foot.L", "Thigh.R", "Shin.R", "Foot.R"],
+  "reserved_controls": ["Root", "Toe.L", "Toe.R"],
+  "fps": 60,
+  "cycle_seconds": 1.3,
+  "validation_cycles": 2,
+  "geometry_gate": {"errors": 0, "warnings": 0, "skin_connected_components": 1},
+  "motion_gate": {"max_planted_foot_step_drift": 0.002, "max_loop_position_error": 0.00001, "max_ground_penetration": 0.004, "sampled_hand_penetrations": 0},
+  "visual_review": ["neck continuity", "shoulder bending", "wrist taper", "hand and shorts clearance", "alternating foot contact", "cycle boundary"],
+  "excluded": ["finger animation", "facial rig", "runtime LOD", "desktop deployment", "wardrobe", "external motion-library compatibility"]
+}

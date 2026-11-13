@@ -1,0 +1,25 @@
+{
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source": "https://quaternius.com/packs/sushirestaurantkit.html",
+  "files": [
+    {
+      "file": "Panda.glb",
+      "bytes": 232352,
+      "sha256": "cc84c59f5b70d73cda7031221f0cff0f7e8cf8fd6ea868110dd6bac30e671b6d",
+      "animations": 0
+    },
+    {
+      "file": "shared-motions.glb",
+      "bytes": 824556,
+      "sha256": "2be24dfd18e4b438275c0cdb32d434fa2cbbf373bef7eac088051f8bc877263f",
+      "animations": 30
+    },
+    {
+      "file": "Rabbit_Pink.glb",
+      "bytes": 331748,
+      "sha256": "dca1f41cbe188c6b1beaeb7bbfabfd2823c6b5ba62f92269225280707c5feb25",
+      "animations": 0
+    }
+  ]
+}

@@ -6,13 +6,13 @@ using System.Windows.Media.Imaging;
 
 namespace Meow.Windows;
 
-// A small, dedicated, upright edge loop. Decode once; no page I/O during looping.
+// A dedicated upright edge loop backed by a bounded packet cache.
 internal static class LuluEdgeAnimation
 {
     private static readonly string Root = Path.Combine(AppContext.BaseDirectory, "Assets", "Lulu", "Edge");
     private sealed record Layout(int Width, int Height, int Columns, int PageFrames, int Frames, double Fps, double AnchorX);
     private static readonly Layout? Info = ReadLayout();
-    private static readonly Lazy<Task<BitmapSource[]>> Frames = new(() => Task.Run(Decode));
+    private static readonly Lazy<Task<LuluFrameBuffer>> Frames = new(() => Task.Run(Decode));
     internal static bool Available => Info is not null;
     internal static double Duration => Info is null ? 0 : Info.Frames / Info.Fps;
     internal static int Count => Info?.Frames ?? 0;
@@ -29,34 +29,26 @@ internal static class LuluEdgeAnimation
             m.GetProperty("columns").GetInt32(), m.GetProperty("pageFrames").GetInt32(),
             m.GetProperty("frames").GetInt32(), m.GetProperty("fps").GetDouble(), m.GetProperty("anchorX").GetDouble());
     }
-    private static BitmapSource[] Decode()
+    private static LuluFrameBuffer Decode()
     {
-        var m = Info!; var result = new BitmapSource[m.Frames]; BitmapSource? page = null;
-        for (int i = 0; i < result.Length; i++)
+        var m = Info!;
+        return LuluFrameBuffer.Load(m.Width, m.Height, m.Frames, m.Columns, m.PageFrames, page =>
         {
-            int local = i % m.PageFrames;
-            if (local == 0)
-            {
-                var bitmap = new BitmapImage(); bitmap.BeginInit(); bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.UriSource = new Uri(Path.Combine(Root, $"edge-{i / m.PageFrames}.png")); bitmap.EndInit(); bitmap.Freeze();
-                page = new FormatConvertedBitmap(bitmap, PixelFormats.Pbgra32, null, 0);
-            }
-            var pixels = new byte[m.Width * m.Height * 4];
-            page!.CopyPixels(new Int32Rect(local % m.Columns * m.Width, local / m.Columns * m.Height, m.Width, m.Height), pixels, m.Width * 4, 0);
-            var frame = BitmapSource.Create(m.Width, m.Height, 96, 96, PixelFormats.Pbgra32, null, pixels, m.Width * 4);
-            frame.Freeze(); result[i] = frame;
-        }
-        return result;
+            var bitmap = new BitmapImage(); bitmap.BeginInit(); bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.UriSource = new Uri(Path.Combine(Root, $"edge-{page}.png")); bitmap.EndInit(); bitmap.Freeze();
+            return new FormatConvertedBitmap(bitmap, PixelFormats.Pbgra32, null, 0);
+        }, Enumerable.Range(0, (m.Frames + m.PageFrames - 1) / m.PageFrames).Select(page => Path.Combine(Root, $"edge-{page}.png")).ToArray());
     }
     internal static BitmapSource Frame(double seconds)
     {
         var m = Info!;
         int index = (int)(Math.Max(0, seconds) * m.Fps + 1e-7) % m.Frames;
-        return Frames.Value.GetAwaiter().GetResult()[index];
+        return Frames.Value.GetAwaiter().GetResult().Frame(index);
     }
-    internal static void Draw(DrawingContext dc, string side, double time, double reveal, double width, double height)
+    internal static void Draw(DrawingContext dc, string side, double time, double reveal, double width, double height, LuluPlaybackFrame playback)
     {
-        var m = Info!; var frame = Frame(time);
+        var m = Info!; int index = (int)(Math.Max(0, time) * m.Fps + 1e-7) % m.Frames;
+        var frame = playback.Update(m, index, m.Width, m.Height, pixels => Frames.Value.GetAwaiter().GetResult().CopyFrame(index, pixels));
         double k = height / ViewHeight;
         // Uniform scale around the grip, never stretching width independently.
         double scale = (height - 8 * k) / m.Height * (1 + .035 * Math.Clamp(reveal, 0, 1));

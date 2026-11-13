@@ -19,12 +19,13 @@ public sealed partial class PetWindow
         Save();
     }
     private void ReleaseWall() { store.Data.WallSide = ""; pet.Wall = ""; wallReveal = 0; Width = Height = 230 * store.Data.Scale; Clamp(); }
-    private void JumpToWindow()
+    private void JumpToWindow() => JumpToWindow(true);
+    private void JumpToWindow(bool interrupt)
     {
         if (pet.BedScene is not null) { Animate("climb"); return; }
-        InterruptConversation();
+        if (interrupt) InterruptConversation();
         ReleaseWall(); var target = Desktop.Platforms(this).Where(p => p.Bounds.Top > Area.Top + Height * .55).OrderBy(p => Math.Abs(p.Bounds.Left + p.Bounds.Width / 2 - (Left + Width / 2))).FirstOrDefault();
-        if (target.Id == IntPtr.Zero) { Say("附近没有适合站的小窗台。"); return; }
+        if (target.Id == IntPtr.Zero) { actionFailure = "附近没有适合站的小窗台。"; conversationPlayback.Finish(); actionUntil = clock.Elapsed.TotalSeconds + 2; Say(actionFailure); return; }
         platform = IntPtr.Zero; jumpTarget = target.Id; const double duration = .7;
         double targetX = Math.Clamp(Left, target.Bounds.Left, Math.Max(target.Bounds.Left, target.Bounds.Right - Width));
         double targetY = target.Bounds.Top - Height * .85;

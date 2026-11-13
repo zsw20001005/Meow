@@ -1,0 +1,82 @@
+{
+  "objects": {
+    "Lulu.Body": {
+      "verts": 218152,
+      "faces": 422428,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 48,
+      "ngons": 0,
+      "closed": true,
+      "volume": 3.794356288,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.858,
+        1.5206,
+        2.7139
+      ],
+      "islands": 1
+    },
+    "Lulu.Arm.L": {
+      "verts": 19437,
+      "faces": 32342,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.038037227,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5513,
+        0.8122,
+        0.5843
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [
+    "FLOATING: [Lulu.Arm.L] is not connected to the main body. Closest gap 0.1822 m between Lulu.Arm.L (center (1.068, -0.355, 1.408)) and Lulu.Body."
+  ],
+  "warnings": [
+    "Lulu.Body: 48 zero-area faces."
+  ],
+  "info": [],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.9289910793304443,
+      -0.7615928649902344,
+      0.0
+    ],
+    "max": [
+      1.3437700271606445,
+      0.7615928649902344,
+      2.713879346847534
+    ],
+    "size": [
+      2.272761106491089,
+      1.5231857299804688,
+      2.713879346847534
+    ],
+    "contact_tolerance": 0.003853657831505967,
+    "parts": 2
+  },
+  "contacts": [],
+  "summary": {
+    "errors": 1,
+    "warnings": 1
+  }
+}

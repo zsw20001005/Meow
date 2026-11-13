@@ -7,6 +7,20 @@ using System.Text.Json;
 namespace Meow.Windows;
 
 public sealed record Message(string role, string content);
+public sealed class ReminderConversation
+{
+    public string Request { get; set; } = "";
+    public string Question { get; set; } = "";
+    public DateTimeOffset Expires { get; set; }
+}
+public sealed class NotebookEntry
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Title { get; set; } = "";
+    public string Body { get; set; } = "";
+    public DateTimeOffset Updated { get; set; } = DateTimeOffset.Now;
+    public bool Archived { get; set; }
+}
 public sealed class Experience
 {
     public string Day { get; set; } = "";
@@ -59,7 +73,9 @@ public sealed class State
     public List<NewsItem> News { get; set; } = [];
     public MailState Mail { get; set; } = new();
     public List<Message> History { get; set; } = [];
+    public ReminderConversation? PendingReminder { get; set; }
     public List<Memo> Memos { get; set; } = [];
+    public List<NotebookEntry> Notes { get; set; } = [];
 }
 public sealed class Store
 {

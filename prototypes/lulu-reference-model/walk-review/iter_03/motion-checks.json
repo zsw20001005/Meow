@@ -1,0 +1,52 @@
+{
+  "frames": 193,
+  "bone_count": 18,
+  "foot_plant_max_step_drift": 2.3940371595392693e-07,
+  "stance_sole_min_z": 0.0002246976364403963,
+  "stance_sole_max_z": 0.033660903573036194,
+  "sampled_hand_penetrations": [],
+  "cycle_position_error": 0.0,
+  "end_position_error": 0.0,
+  "cycle_velocity_jump": 0.0,
+  "max_sample_vertex_step": 0.03356722911177814,
+  "max_sample_acceleration": 0.01296913650040045,
+  "samples": [
+    {
+      "frame": 1,
+      "body_min_z": 0.0002244972565677017
+    },
+    {
+      "frame": 25,
+      "body_min_z": 0.00022452954726759344
+    },
+    {
+      "frame": 49,
+      "body_min_z": 0.00022449700918514282
+    },
+    {
+      "frame": 73,
+      "body_min_z": 0.00022452929988503456
+    },
+    {
+      "frame": 97,
+      "body_min_z": 0.0002244972565677017
+    },
+    {
+      "frame": 121,
+      "body_min_z": 0.00022452954726759344
+    },
+    {
+      "frame": 145,
+      "body_min_z": 0.00022449700918514282
+    },
+    {
+      "frame": 169,
+      "body_min_z": 0.00022452929988503456
+    },
+    {
+      "frame": 193,
+      "body_min_z": 0.0002244972565677017
+    }
+  ],
+  "pass": true
+}

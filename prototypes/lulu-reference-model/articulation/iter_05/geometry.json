@@ -1,0 +1,59 @@
+{
+  "objects": {
+    "Lulu.Arm.L": {
+      "verts": 19437,
+      "faces": 32342,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.038037172,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5513,
+        0.8122,
+        0.5843
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "Asset does not sit on the ground: lowest point z = 1.1156 m (expected 0)."
+  ],
+  "info": [
+    "Lulu.Body: 272,470 verts > max_verts 250,000, skipped. Scope the check to your new parts (collection=/names=), or raise max_verts."
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      0.33250948786735535,
+      -0.7615928649902344,
+      1.1155766248703003
+    ],
+    "max": [
+      0.8837700486183167,
+      0.05063549429178238,
+      1.699886441230774
+    ],
+    "size": [
+      0.5512605905532837,
+      0.8122283816337585,
+      0.5843098163604736
+    ],
+    "contact_tolerance": 0.001142375217255316,
+    "parts": 1
+  },
+  "contacts": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 1
+  }
+}

@@ -1,0 +1,13 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>共享骨骼 · 角色预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f0e9;color:#30372f;font:15px system-ui,"Microsoft YaHei",sans-serif}main{max-width:1200px;margin:auto;padding:26px}header{display:flex;justify-content:space-between;align-items:center;gap:20px}h1{font-size:25px;margin:0 0 8px}p{color:#73796e;margin:6px 0;line-height:1.6}.tag{border:1px solid #d6ddcc;padding:7px 14px;border-radius:20px;background:#e8efdf;font-size:13px}#stage{height:61vh;min-height:360px;position:relative;margin:20px 0;border-radius:24px;overflow:hidden;border:1px solid #e0ded3}canvas{display:block;width:100%;height:100%}#status{position:absolute;left:20px;bottom:15px;color:#5f685b;font-size:13px}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}button,select{font:inherit;border:1px solid #d6d9ce;background:#fffdf8;color:inherit;border-radius:12px;padding:10px 17px;cursor:pointer}button.active{background:#3f5845;color:#fff;border-color:#3f5845}button:disabled{opacity:.5;cursor:wait}.legend{display:flex;gap:30px;font-size:13px;color:#747b70}footer{border-top:1px solid #dddcd2;margin-top:22px;padding-top:14px;font-size:12px;color:#7a7e74}a{color:#405e48}label{margin-left:12px}input{accent-color:#45664a}@media(max-width:700px){main{padding:15px}.tag{display:none}#stage{height:52vh}.legend{display:block}}
+</style>
+<script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script>
+<main><header><div><h1>两个角色，一份动作</h1><p>切换形象，保留同一套骨骼动作。拖动画面可旋转，滚轮可缩放。</p></div><span class="tag">独立原型 · 不替换桌面噜噜</span></header>
+<div id="stage"><div id="status">正在加载角色和共享动作…</div></div>
+<div class="controls" id="actions"><button data-action="Idle" class="active">待机</button><button data-action="Walk">走路</button><button data-action="Wave">挥手</button><button data-action="Yes">点头</button><button data-action="No">摇头</button><button id="pause">暂停</button></div>
+<div class="controls"><select id="character"><option value="both">同时对比</option><option value="Panda">熊猫</option><option value="Rabbit">粉发兔子</option></select><label><input id="bones" type="checkbox"> 显示骨骼</label><label>速度 <input id="speed" type="range" min="0.4" max="1.4" step="0.1" value="1"></label></div>
+<div class="legend"><span>熊猫模型：227 KiB</span><span>兔子模型：324 KiB</span><span>共用动作文件：805 KiB / 30 段</span></div>
+<footer>模型：<a href="https://quaternius.com/packs/sushirestaurantkit.html" target="_blank" rel="noreferrer">Quaternius · Sushi Restaurant Kit</a>（CC0）。此页验证五种基础循环动作；没有宣称已适配床铺、换装和全部表情。资源大小不含播放器。</footer></main>
+<script type="module" src="/main.mjs"></script></html>

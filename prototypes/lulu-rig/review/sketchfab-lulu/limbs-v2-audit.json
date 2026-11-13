@@ -1,0 +1,235 @@
+{
+  "objects": {
+    "Lulu — Spencer0131 — painted preview": {
+      "verts": 139154,
+      "faces": 139152,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 3.266011778,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.9559,
+        1.525,
+        2.7678
+      ],
+      "islands": 1
+    },
+    "Independent Arm.L": {
+      "verts": 928,
+      "faces": 898,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 2,
+      "closed": true,
+      "volume": 0.032525926,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4882,
+        0.3282,
+        0.6496
+      ],
+      "islands": 1
+    },
+    "Independent Arm.R": {
+      "verts": 928,
+      "faces": 898,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 2,
+      "closed": true,
+      "volume": 0.032522693,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4882,
+        0.3282,
+        0.6496
+      ],
+      "islands": 1
+    },
+    "Independent Hand.L": {
+      "verts": 6726,
+      "faces": 6724,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.011507701,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3013,
+        0.2314,
+        0.3712
+      ],
+      "islands": 1
+    },
+    "Independent Leg.L": {
+      "verts": 25474,
+      "faces": 25472,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.080284538,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4478,
+        0.6625,
+        0.749
+      ],
+      "islands": 1
+    },
+    "Independent Hand.R": {
+      "verts": 6726,
+      "faces": 6724,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.011507615,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3013,
+        0.2314,
+        0.3712
+      ],
+      "islands": 1
+    },
+    "Independent Leg.R": {
+      "verts": 25464,
+      "faces": 25462,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.080286875,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4482,
+        0.6625,
+        0.749
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "info": [
+    "Independent Arm.L: 2 n-gons (matters only before subdivision).",
+    "Independent Arm.R: 2 n-gons (matters only before subdivision).",
+    "6 expected embedded contacts (expect_embedded)."
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -1.074202299118042,
+      -0.756256103515625,
+      0.0002471048792358488
+    ],
+    "max": [
+      1.074202299118042,
+      0.7687003016471863,
+      2.998321771621704
+    ],
+    "size": [
+      2.148404598236084,
+      1.524956464767456,
+      2.998074769973755
+    ],
+    "contact_tolerance": 0.0039911886260788326,
+    "parts": 7
+  },
+  "contacts": [
+    {
+      "a": "Lulu — Spencer0131 — painted preview",
+      "b": "Independent Arm.L",
+      "depth": 0.21516340970993042,
+      "expected": true
+    },
+    {
+      "a": "Lulu — Spencer0131 — painted preview",
+      "b": "Independent Arm.R",
+      "depth": 0.2152143269777298,
+      "expected": true
+    },
+    {
+      "a": "Lulu — Spencer0131 — painted preview",
+      "b": "Independent Leg.L",
+      "depth": 0.3665465712547302,
+      "expected": true
+    },
+    {
+      "a": "Lulu — Spencer0131 — painted preview",
+      "b": "Independent Leg.R",
+      "depth": 0.3840552866458893,
+      "expected": true
+    },
+    {
+      "a": "Independent Arm.L",
+      "b": "Independent Hand.L",
+      "depth": 0.10747046023607254,
+      "expected": true
+    },
+    {
+      "a": "Independent Arm.R",
+      "b": "Independent Hand.R",
+      "depth": 0.10733932256698608,
+      "expected": true
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (2.148, 1.525, 2.998)  parts: 7  contact tol: 0.0040\n  [INFO] Independent Arm.L: 2 n-gons (matters only before subdivision).\n  [INFO] Independent Arm.R: 2 n-gons (matters only before subdivision).\n  [INFO] 6 expected embedded contacts (expect_embedded).\n  objects:\n    Lulu — Spencer0131 — painted preview: dims (1.956, 1.525, 2.768) verts 139154 faces 139152 islands 1\n    Independent Arm.L: dims (0.488, 0.328, 0.650) verts 928 faces 898 islands 1\n    Independent Arm.R: dims (0.488, 0.328, 0.650) verts 928 faces 898 islands 1\n    Independent Hand.L: dims (0.301, 0.231, 0.371) verts 6726 faces 6724 islands 1\n    Independent Leg.L: dims (0.448, 0.662, 0.749) verts 25474 faces 25472 islands 1\n    Independent Hand.R: dims (0.301, 0.231, 0.371) verts 6726 faces 6724 islands 1\n    Independent Leg.R: dims (0.448, 0.662, 0.749) verts 25464 faces 25462 islands 1"
+}

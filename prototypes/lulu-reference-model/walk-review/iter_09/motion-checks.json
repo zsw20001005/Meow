@@ -1,0 +1,69 @@
+{
+  "frames": 157,
+  "bone_count": 18,
+  "foot_plant_max_step_drift": 2.062875719636256e-07,
+  "stance_sole_min_z": 0.0002258859167341143,
+  "stance_sole_max_z": 0.03384452685713768,
+  "sampled_hand_penetrations": [
+    {
+      "frame": 52,
+      "side": "L",
+      "count": 1
+    },
+    {
+      "frame": 130,
+      "side": "L",
+      "count": 1
+    }
+  ],
+  "cycle_position_error": 0.0,
+  "end_position_error": 0.0,
+  "cycle_velocity_jump": 0.0,
+  "max_sample_vertex_step": 0.02764959447467408,
+  "max_sample_acceleration": 0.009311549615545124,
+  "samples": [
+    {
+      "frame": 1,
+      "body_min_z": 0.00022501024068333209
+    },
+    {
+      "frame": 20,
+      "body_min_z": 0.00022522579820360988
+    },
+    {
+      "frame": 39,
+      "body_min_z": 0.00022499638726003468
+    },
+    {
+      "frame": 58,
+      "body_min_z": 0.00022519913909491152
+    },
+    {
+      "frame": 77,
+      "body_min_z": 0.00022500217892229557
+    },
+    {
+      "frame": 96,
+      "body_min_z": 0.00022524362429976463
+    },
+    {
+      "frame": 115,
+      "body_min_z": 0.00022506043023895472
+    },
+    {
+      "frame": 134,
+      "body_min_z": 0.0002252318663522601
+    },
+    {
+      "frame": 153,
+      "body_min_z": 0.00022504919616039842
+    }
+  ],
+  "loop_wrap_velocity_delta": 0.0017151178105543332,
+  "hand_sample_count": [
+    228,
+    228
+  ],
+  "clothing_protrusion_samples": [],
+  "pass": false
+}

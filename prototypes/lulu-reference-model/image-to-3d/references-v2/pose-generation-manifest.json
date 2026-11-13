@@ -1,0 +1,78 @@
+{
+  "provider": "Google Flow",
+  "model": "Nano Banana 2.1",
+  "date": "2026-11-13",
+  "displayed_credits_per_generation": 0,
+  "project": "https://flow.google.com/project/d0abe2cc-72eb-42e1-875b-fac5d7ba17b4",
+  "outputs": [
+    {
+      "pose": "a",
+      "sheet": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\references-v2\\lulu-a-pose-turnaround-v1.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "views": {
+        "front": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "left": [
+          512,
+          0,
+          1024,
+          512
+        ],
+        "back": [
+          0,
+          512,
+          512,
+          1024
+        ],
+        "three-quarter": [
+          512,
+          512,
+          1024,
+          1024
+        ]
+      }
+    },
+    {
+      "pose": "t",
+      "sheet": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\references-v2\\lulu-t-pose-turnaround-v1.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "views": {
+        "front": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "left": [
+          512,
+          0,
+          1024,
+          512
+        ],
+        "back": [
+          0,
+          512,
+          512,
+          1024
+        ],
+        "three-quarter": [
+          512,
+          512,
+          1024,
+          1024
+        ]
+      }
+    }
+  ],
+  "review": "T-pose is preferred for next reconstruction: clear horizontal arms. A-pose has narrower armpit gaps. Reference identity and tail retained; no new 3D model generated yet. Crops are lossless quadrant extraction only."
+}

@@ -53,8 +53,12 @@ __pycache__/
 /model/*
 !/model/README.md
 
-# Rebuildable output and automatic backups for the current 3D prototype.
-/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/**/*.blend[0-9]
-/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/downloads/
-/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/rigged/preview-frames/
-/prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/motion-set-01/frames/
+# Rebuildable frame output and automatic backups; source models stay tracked.
+/prototypes/**/*.blend[0-9]
+/prototypes/**/frames/
+/prototypes/**/frames-clean/
+/prototypes/**/frames-final/
+/prototypes/**/preview-frames/
+/prototypes/**/motion-frames/
+/prototypes/lulu-reference-model/image-to-3d/**/downloads/
+/prototypes/lulu-reference-model/image-to-3d/**/rig-downloads/

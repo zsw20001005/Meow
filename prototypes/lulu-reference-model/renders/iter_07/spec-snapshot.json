@@ -1,0 +1,18 @@
+{
+  "name": "Lulu AI-reference proportion study",
+  "units": "m",
+  "collection": "Lulu_Blockout",
+  "overall": {"dims": [2.04, null, 3.43], "tol": 0.12},
+  "ground": true,
+  "contact_tolerance": 0.012,
+  "parts": {
+    "Head": {"dims": [1.89, 1.475, 1.54], "tol": 0.04, "attached_to": ["Body"]},
+    "HairFlow": {"attached_to": ["Hair"]},
+    "Shorts": {"attached_to": ["Body", "Leg.L", "Leg.R"]},
+    "Arm.L": {"attached_to": ["Body"]},
+    "Arm.R": {"attached_to": ["Body"]},
+    "Foot.L": {"attached_to": ["Leg.L"]},
+    "Foot.R": {"attached_to": ["Leg.R"]}
+  },
+  "expect_embedded": [["Head", "Body"], ["Head", "Ear.*"], ["Ear.*", "InnerEar.*"], ["Head", "Eye.*"], ["Eye.*", "Iris.*"], ["Iris.*", "Pupil.*"], ["Pupil.*", "Highlight.*"], ["Head", "Hair"], ["Hair", "Cowlick"], ["Head", "Temple.*"], ["Frame.*", "Temple.*"], ["Frame.*", "Bridge"], ["Frame.*", "Head"], ["Smile", "Head"], ["Body", "Shorts"], ["Arm.*", "Body"], ["Arm.*", "Thumb.*"], ["Arm.*", "Shorts"], ["Shorts", "Leg.*"], ["Leg.*", "Foot.*"], ["Shorts", "Waistband"]]
+}

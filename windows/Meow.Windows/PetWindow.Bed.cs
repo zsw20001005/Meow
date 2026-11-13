@@ -98,6 +98,7 @@ public sealed partial class PetWindow
         if (!scene.Complete) return true;
         var next = afterBed; pet.FinishBedScene(); Width = Height; Clamp(); heldState = "";
         AnimateCore(next.Action, next.Speak, next.Hold);
+        if (next.Action == "idle" && !next.Hold && conversationPlayback.HasPending) actionUntil = clock.Elapsed.TotalSeconds + .15;
         return pet.BedScene is not null;
     }
 }

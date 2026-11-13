@@ -1,0 +1,8 @@
+{
+  "rendered_frames": 79,
+  "fps": 60,
+  "cycle_unique_frames": 78,
+  "adjacent_identical_frames": [],
+  "first_last_rgb_mean_absolute_difference_255": 0.010660807291666666,
+  "first_last_blurred_mean_absolute_difference_255": 0.0096826171875
+}

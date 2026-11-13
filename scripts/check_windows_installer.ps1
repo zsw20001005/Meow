@@ -1,4 +1,4 @@
-param([string]$Setup = '', [string]$RestoreExecutable = '')
+param([string]$Setup = '', [string]$RestoreExecutable = '', [switch]$WithoutLocalModel)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 if (!$Setup) { $Setup = Join-Path $root 'build/installers/Meow-0.1.0-Windows-x64-Setup.exe' }
@@ -31,15 +31,23 @@ $userState = Join-Path $env:LOCALAPPDATA 'Meow.Windows/state.json'
 try {
     foreach ($process in $running) { Stop-Process -Id $process.Id; $process.WaitForExit() }
     $stateHash = if (Test-Path -LiteralPath $userState) { (Get-FileHash -LiteralPath $userState).Hash } else { '' }
-    $arguments = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', "/DIR=$destination", '/TYPE=full', '/TASKS=desktopicon', "/LOG=$work/install.log")
+    $installType = if ($WithoutLocalModel) { '/TYPE=compact' } else { '/TYPE=full' }
+    $arguments = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', "/DIR=$destination", $installType, '/TASKS=desktopicon', "/LOG=$work/install.log")
     Run $Setup $arguments
     Check (Test-Path -LiteralPath (Join-Path $destination 'Meow.exe')) 'installed executable exists'
-    Check (Test-Path -LiteralPath (Join-Path $destination 'local-engine/model.gguf')) 'full install includes optional model'
+    if ($WithoutLocalModel) {
+        Check (!(Test-Path -LiteralPath (Join-Path $destination 'local-engine'))) 'lite install excludes local engine'
+        Check (@(Get-ChildItem -LiteralPath $destination -Filter '*.gguf' -Recurse -File).Count -eq 0) 'lite install excludes all model weights'
+    } else {
+        Check (Test-Path -LiteralPath (Join-Path $destination 'local-engine/model.gguf')) 'full install includes optional model'
+    }
     Check ((Get-ItemProperty $registry).InstallLocation.TrimEnd('\') -eq $destination.TrimEnd('\')) 'uninstall registration targets the test directory'
     $shell = New-Object -ComObject WScript.Shell
     foreach ($link in @($desktop, $startLink)) {
         Check (Test-Path -LiteralPath $link) 'installer created shortcut'
         Check ($shell.CreateShortcut($link).TargetPath -eq (Join-Path $destination 'Meow.exe')) 'shortcut targets installed executable'
+        $installedIcon = $shell.CreateShortcut($link).IconLocation -replace ',\s*-?\d+$', ''
+        Check ((Split-Path $installedIcon -Leaf) -match '^Lulu-\d+\.\d+\.\d+\.ico$' -and (Test-Path -LiteralPath $installedIcon)) 'shortcut uses existing versioned Lulu icon'
     }
     $inventory = Get-Content (Join-Path $destination 'package-files.json') -Raw | ConvertFrom-Json
     foreach ($item in $inventory) {
@@ -48,7 +56,9 @@ try {
     }
     Check $true "all $($inventory.Count) installed payload hashes match"
     $exe = Join-Path $destination 'Meow.exe'
-    foreach ($test in @('--selftest', '--edgecheck', '--bed-entrycheck', '--localcheck')) { Run $exe @($test) 120 }
+    $tests = @('--selftest', '--edgecheck', '--bed-entrycheck')
+    if (!$WithoutLocalModel) { $tests += '--localcheck' }
+    foreach ($test in $tests) { Run $exe @($test) 120 }
     Push-Location (Join-Path $destination 'mailbridge')
     try {
         & ./node.exe --input-type=module -e 'await import("@number0/iroh"); console.log("native mail dependency loaded")'
@@ -67,7 +77,8 @@ try {
     $afterHash = if (Test-Path -LiteralPath $userState) { (Get-FileHash -LiteralPath $userState).Hash } else { '' }
     Check ($stateHash -eq $afterHash) 'real user state unchanged by install, checks, upgrade and uninstall'
     $results | Set-Content -LiteralPath (Join-Path $work 'results.txt')
-    Copy-Item -LiteralPath (Join-Path $work 'results.txt') -Destination (Join-Path $root 'build/installers/verification.txt')
+    $reportName = [IO.Path]::GetFileNameWithoutExtension($Setup) + '.verification.txt'
+    Copy-Item -LiteralPath (Join-Path $work 'results.txt') -Destination (Join-Path $root "build/installers/$reportName")
     Write-Output "Verification artifacts: $work"
 } catch {
     $results.Add("FAIL $($_.Exception.Message)")

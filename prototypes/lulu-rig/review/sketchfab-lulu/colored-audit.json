@@ -1,0 +1,66 @@
+{
+  "source_geometry_unchanged": true,
+  "geometry": {
+    "vertices": 249963,
+    "faces": 499926,
+    "positions_sha256": "ec144a60f79f12c9d1fbc79de2176866d91d6ecbb387ecf6275b18732a30cb4c",
+    "indices_sha256": "0e870f250e3454425d4cbb5c907b4decb1d6bc6d6c4a2f70663a36a598c2d210"
+  },
+  "health": {
+    "objects": {
+      "Lulu — Spencer0131 — painted preview": {
+        "verts": 249963,
+        "faces": 499926,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.879294615,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          1.858,
+          1.5232,
+          3.0
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "info": [],
+    "units": "m",
+    "overall": {
+      "min": [
+        -0.9289910793304443,
+        -0.7615928649902344,
+        0.0
+      ],
+      "max": [
+        0.9289910793304443,
+        0.7615928649902344,
+        3.0
+      ],
+      "size": [
+        1.8579821586608887,
+        1.5231857299804688,
+        3.0
+      ],
+      "contact_tolerance": 0.0038434610025574515,
+      "parts": 1
+    },
+    "contacts": [],
+    "summary": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (1.858, 1.523, 3.000)  parts: 1  contact tol: 0.0038\n  objects:\n    Lulu — Spencer0131 — painted preview: dims (1.858, 1.523, 3.000) verts 249963 faces 499926 islands 1"
+  },
+  "visual_approval": false
+}

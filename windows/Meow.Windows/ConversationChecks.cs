@@ -54,6 +54,11 @@ internal static class ConversationChecks
             Expire(); Check(drawing.Action == "wave", "render tick advances eating to waving");
             Expire(); Check(drawing.Action == "idle" && drawing.Emotion == "happy", "render tick advances action to expression without overlay");
             Expire(); Check(drawing.Action == "idle" && drawing.Emotion == "neutral" && !playback.Playing, "completed conversation returns to neutral idle");
+            window.ReactToConversation(ActionLanguage.LocalPlan("先挥手，再转圈，最后点头")!, window.ConversationRevision);
+            Check(drawing.Action == "wave", "local multi-action request starts first action");
+            Expire(); Check(drawing.Action == "spin", "local multi-action request advances to second action");
+            Expire(); Check(drawing.Action == "nod", "local multi-action request advances to third action");
+            Expire(); Check(!playback.Playing, "three-step action queue finishes once");
             revision = window.ConversationRevision;
             window.ReactToConversation(reply, revision); window.Animate("idle");
             Check(!playback.Playing && drawing.Action == "idle", "manual stop clears running conversation");
@@ -72,6 +77,11 @@ internal static class ConversationChecks
                 AdvanceBed(40);
             }
             Check(drawing.Action == "idle" && drawing.BedScene is null, "wake completes before returning to idle");
+            window.Animate("sleep"); if (drawing.BedScene is not null || drawing.BedApproaching) AdvanceBed(20);
+            window.ReactToConversation(ActionLanguage.LocalPlan("别睡了，起来挥挥手")!, window.ConversationRevision);
+            if (drawing.BedScene is not null) { Check(drawing.BedScene.WakeRequested, "wake-and-wave first requests actual wake scene"); AdvanceBed(40); }
+            Expire(); Check(drawing.Action == "wave", "wake-and-wave executes waving after leaving bed");
+            Expire();
             window.Animate("emotion:happy"); window.Thinking(true);
             Check(drawing.Action == "idle" && drawing.Emotion == "happy", "thinking indicator does not overwrite an explicit expression");
             Check((double)Field("actionUntil").GetValue(window)! >= 15, "ordinary expressions retain their pose for at least fifteen seconds");
@@ -124,7 +134,7 @@ internal static class ConversationChecks
                 window.InterruptConversation();
                 Check(drawing.BedScene is null && !drawing.BedApproaching && window.Width == window.Height, "physical interruption releases bed scene and restores normal window bounds");
             }
-            foreach (var name in ConversationBehavior.Actions.Concat(ConversationBehavior.Emotions).Where(n => n != "neutral"))
+            foreach (var name in ConversationBehavior.Actions.Concat(ConversationBehavior.Emotions).Where(n => n is not ("neutral" or "come" or "down" or "climb" or "hold" or "free")))
                 Check(LuluVideo.Clips.ContainsKey(name), "behavior maps to installed video: " + name);
             log.Add("All runtime checks passed; isolated temporary store, no model requests or user data.");
             return 0;
@@ -166,7 +176,7 @@ internal static class ConversationChecks
         foreach (var bad in new[] {
             "{\"text\":\"你好\",\"emotion\":\"happy\",\"actions\":[\"delete_files\"]}",
             "{\"text\":\"你好\",\"emotion\":{},\"actions\":[]}",
-            "{\"text\":\"你好\",\"emotion\":\"happy\",\"actions\":[\"wave\",\"nod\",\"eat\"]}",
+            "{\"text\":\"你好\",\"emotion\":\"happy\",\"actions\":[\"wave\",\"nod\",\"eat\",\"play\",\"spin\",\"roll\",\"sleep\"]}",
             "{\"text\":\"你好\",\"emotion\":\"happy\",\"actions\":[1]}",
             "{\"text\":\"你好\",\"emotion\":\"happy\",\"actions\":[\"eat\"]",
             "你好" })

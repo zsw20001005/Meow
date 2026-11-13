@@ -1,0 +1,39 @@
+{
+  "server": {
+    "name": "MCP for Blender",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "tool_names": [
+    "get_addon_status",
+    "disable_telemetry",
+    "get_scene_info",
+    "execute_blender_code",
+    "record_trajectory_feedback",
+    "look",
+    "generate_3d",
+    "search_assets",
+    "import_asset"
+  ],
+  "scene": {
+    "isError": false,
+    "text": [
+      "Scene 'Scene' | 1 mesh | active Lulu_Source_Inspection | selected Lulu_Source_Inspection | mode OBJECT\nD:\\coding\\Meow\\prototypes\\lulu-rig\\review\\sketchfab-lulu\\mcp-inspection.blend | engine BLENDER_EEVEE_NEXT | frames 1-250 (now 1) at 24 fps | 1920x1080 | camera none | HDRI none | unit scale 1.0\n\nShowing 1 of 1 (name | type | details | materials):\nLulu_Source_Inspection | mesh | 499926 faces | mat Lulu_Material_Connection_Test"
+    ]
+  },
+  "material": {
+    "isError": false,
+    "text": [
+      "Code executed successfully: {\"file\": \"D:\\\\coding\\\\Meow\\\\prototypes\\\\lulu-rig\\\\review\\\\sketchfab-lulu\\\\mcp-inspection.blend\", \"vertices\": 249963, \"faces\": 499926, \"material_edit_verified\": true, \"restored\": true}\n"
+    ]
+  },
+  "preview": {
+    "isError": false,
+    "text": [
+      "Tiles left to right, top to bottom: front, right, three_quarter. Framed 1 objects, 1.86 x 1.52 x 3 m across, centred at [0.0, 0.0, 1.5]."
+    ],
+    "image": "D:\\coding\\Meow\\prototypes\\lulu-rig\\review\\sketchfab-lulu\\mcp-preview.png"
+  }
+}

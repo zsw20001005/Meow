@@ -1,0 +1,91 @@
+{
+  "objects": {
+    "Lulu.Body": {
+      "verts": 274532,
+      "faces": 274524,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 3.805144201,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.8559,
+        1.5203,
+        2.7121
+      ],
+      "islands": 4
+    },
+    "Lulu.Arm.L": {
+      "verts": 19437,
+      "faces": 32342,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.038037326,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5513,
+        0.8122,
+        0.5843
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [
+    "FLOATING: [Lulu.Body[island 1]] is not connected to the main body. Closest gap 0.0122 m between Lulu.Body[island 1] (center (0.783, -0.180, 1.431)) and Lulu.Body[island 0].",
+    "FLOATING: [Lulu.Body[island 2]] is not connected to the main body. Closest gap 0.0155 m between Lulu.Body[island 2] (center (0.792, -0.126, 1.422)) and Lulu.Body[island 0].",
+    "FLOATING: [Lulu.Body[island 3]] is not connected to the main body. Closest gap 0.0149 m between Lulu.Body[island 3] (center (0.801, -0.090, 1.422)) and Lulu.Body[island 0]."
+  ],
+  "warnings": [],
+  "info": [
+    "Contacts: Lulu.Body[island 0]-Lulu.Arm.L embedded 0.131 m"
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.9271231889724731,
+      -0.7615928649902344,
+      0.00018108166113961488
+    ],
+    "max": [
+      0.9287329912185669,
+      0.7614192962646484,
+      2.712240695953369
+    ],
+    "size": [
+      1.85585618019104,
+      1.5230121612548828,
+      2.712059497833252
+    ],
+    "contact_tolerance": 0.0036220208126335886,
+    "parts": 5
+  },
+  "contacts": [
+    {
+      "a": "Lulu.Body[island 0]",
+      "b": "Lulu.Arm.L",
+      "depth": 0.13095618784427643,
+      "expected": false
+    }
+  ],
+  "summary": {
+    "errors": 3,
+    "warnings": 0
+  }
+}

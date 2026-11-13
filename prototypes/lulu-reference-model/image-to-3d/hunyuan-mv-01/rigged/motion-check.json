@@ -1,0 +1,22 @@
+{
+  "LeftArm": {
+    "test_angle_degrees": 20,
+    "vertices_moved_over_1mm": 2919,
+    "max_displacement": 0.16227611044578286
+  },
+  "RightArm": {
+    "test_angle_degrees": 20,
+    "vertices_moved_over_1mm": 2814,
+    "max_displacement": 0.1766447645022014
+  },
+  "LeftUpLeg": {
+    "test_angle_degrees": 20,
+    "vertices_moved_over_1mm": 7359,
+    "max_displacement": 0.23065113575058796
+  },
+  "RightUpLeg": {
+    "test_angle_degrees": 20,
+    "vertices_moved_over_1mm": 7770,
+    "max_displacement": 0.22684221635423465
+  }
+}

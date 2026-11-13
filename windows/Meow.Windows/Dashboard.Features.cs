@@ -22,6 +22,11 @@ public sealed partial class Dashboard
     private UIElement Settings()
     {
         var p = Panel(); PageTitle(p, "设置");
+        Label(p, "可选扩展");
+        Hint(p, $"动作表情：{(LuluVideo.MissingClips.Count == 0 ? "完整" : $"基础版，另有 {LuluVideo.MissingClips.Count} 种可扩展")}\n上床睡觉：{(LuluBedScene.Available ? "已安装" : "未安装，使用基础睡觉动作")}\n信箱通信：{(System.IO.File.Exists(System.IO.Path.Combine(AppContext.BaseDirectory, "mailbridge", "node.exe")) ? "已安装" : "未安装")}\n本地模型：{(System.IO.File.Exists(System.IO.Path.Combine(AppContext.BaseDirectory, "local-engine", "model.gguf")) ? "已安装" : "未安装，可使用云端聊天")} ");
+        Hint(p, "需要更多功能时，运行对应扩展包安装程序，选择与主程序相同的目录。安装前退出噜噜，完成后重新打开。扩展包可在 Windows“已安装的应用”中单独卸载。");
+        p.Children.Add(Button("打开程序目录", () => Process.Start(new ProcessStartInfo(AppContext.BaseDirectory) { UseShellExecute = true })));
+        p.Children.Add(MacTheme.Divider());
         var provider = new ComboBox { ItemsSource = new[] { "云端模型", "本地模型" }, SelectedIndex = store.Data.LocalModel ? 1 : 0, Width = 215 };
         var row = new DockPanel { MinHeight = 34 }; DockPanel.SetDock(provider, Dock.Right); row.Children.Add(provider); row.Children.Add(MacTheme.Text("对话模型", 12.5)); p.Children.Add(row);
         var cloud = new StackPanel(); p.Children.Add(cloud);
@@ -61,7 +66,7 @@ public sealed partial class Dashboard
         Hint(cloud, "云端聊天会把对话与相关记忆发送给所选模型。API Key 加密保存在本机；留空可保留已保存的密钥。");
         var local = new StackPanel(); p.Children.Add(local); Label(local, "本地服务地址"); var localUrl = new TextBox { Text = store.Data.LocalUrl }; local.Children.Add(localUrl); Label(local, "模型名称 / 推理接入点 ID"); var localName = new TextBox { Text = store.Data.LocalModelName }; local.Children.Add(localName);
         var start = Button("启动随附的本地模型", () => { }); local.Children.Add(start); start.Click += async (_, _) => { start.IsEnabled = false; try { await pet.Local.Start(); feedback.Text = "本地模型已就绪。"; } catch (Exception e) { feedback.Text = e.Message; } finally { start.IsEnabled = true; } };
-        Hint(local, "本地聊天不发送云端密钥。记忆整理、智能备忘和热点仍使用已配置的云端模型。");
+        Hint(local, "本地聊天不发送云端密钥。聊天中的笔记和提醒使用当前对话模型；自动记忆整理、备忘建议和热点仍使用已配置的云端模型。");
         void Provider() { cloud.Visibility = provider.SelectedIndex == 0 ? Visibility.Visible : Visibility.Collapsed; local.Visibility = provider.SelectedIndex == 1 ? Visibility.Visible : Visibility.Collapsed; }
         provider.SelectionChanged += (_, _) => Provider(); Provider();
         p.Children.Add(Button("保存模型设置", () =>
@@ -95,6 +100,9 @@ public sealed partial class Dashboard
         Hint(p, "其他服务商采用所选模型的默认思考策略，可通过模型 ID 选择推理模型。");
         p.Children.Add(MacTheme.Divider()); p.Children.Add(Row(Button("打开备忘录…", () => OpenFeature("memos")), Button("打开信箱…", () => OpenFeature("mail"))));
         p.Children.Add(Button("重置宠物状态", () => { if (Confirm("把饱食度、精力和心情恢复到初始值？")) { store.Data.Fullness = 75; store.Data.Energy = 80; store.Data.Happiness = 75; Persist(); } }));
+        p.Children.Add(MacTheme.Divider());
+        Hint(p, "关闭聊天窗口后，噜噜会继续留在桌面。要完全结束程序，请点击“退出噜噜”。");
+        p.Children.Add(Button("退出噜噜", pet.ExitApp));
         Hint(p, "Meow · 住在桌面上的小小陪伴"); return MacTheme.Scroll(p);
     }
     private UIElement Memory()
@@ -106,29 +114,36 @@ public sealed partial class Dashboard
         int tab = 0; bool old = false; var rows = new StackPanel();
         void Refresh()
         {
-            count.Text = $"相伴 {store.Data.Experiences.Select(x => x.Day).Distinct().Count()} 天 · {store.Data.Facts.Count(x => x.Active)} 条当前记忆 · {store.Data.Experiences.Count} 组共同经历";
+            count.Text = $"相伴 {store.Data.Experiences.Select(x => x.Day).Distinct().Count()} 天 · {store.Data.Facts.Count(x => x.Active)} 条当前记忆 · {store.Data.Experiences.Count} 组共同经历 · {store.Data.Notes.Count(x => !x.Archived)} 条笔记";
             rows.Children.Clear(); string query = search.Text.Trim();
             if (tab == 0)
             {
                 foreach (var fact in store.Data.Facts.Where(x => (old || x.Active) && (x.Text + x.Evidence).Contains(query, StringComparison.OrdinalIgnoreCase)).OrderByDescending(x => x.At))
                 {
-                    var card = new StackPanel(); var top = new DockPanel(); var forget = Button("忘掉", () => { store.Data.Facts.Remove(fact); store.Data.History.Clear(); conversation.Children.Clear(); Persist(); Refresh(); }); DockPanel.SetDock(forget, Dock.Right); top.Children.Add(forget); top.Children.Add(MacTheme.Text(fact.Text, 13, true)); card.Children.Add(top);
+                    var card = new StackPanel(); var top = new DockPanel(); var forget = Button("忘掉", () => { store.Data.Facts.Remove(fact); store.Data.History.Clear(); store.Data.PendingReminder = null; conversation.Children.Clear(); Persist(); Refresh(); }); DockPanel.SetDock(forget, Dock.Right); top.Children.Add(forget); top.Children.Add(MacTheme.Text(fact.Text, 13, true)); card.Children.Add(top);
                     Hint(card, $"{fact.At.LocalDateTime:yyyy/M/d HH:mm} · {(fact.Active ? "当前记忆" : "历史版本")}"); card.Children.Add(MacTheme.Hint("主人原话：" + fact.Evidence)); rows.Children.Add(MacTheme.Card(card));
                 }
+            }
+            else if (tab == 2) foreach (var note in store.Data.Notes.Where(n => (old || !n.Archived) && (n.Title + n.Body).Contains(query, StringComparison.OrdinalIgnoreCase)).OrderByDescending(n => n.Updated))
+            {
+                var card = new StackPanel(); card.Children.Add(MacTheme.Text(note.Title + (note.Archived ? "（已归档）" : ""), 14, true)); Hint(card, note.Body);
+                card.Children.Add(Row(Button("编辑", () => EditNote(note)), Button(note.Archived ? "恢复" : "归档", () => { var before = note.Archived; note.Archived = !before; if (!Persist()) note.Archived = before; Refresh(); })));
+                rows.Children.Add(MacTheme.Card(card));
             }
             else foreach (var exp in store.Data.Experiences.Where(x => (x.Kind + x.Day).Contains(query, StringComparison.OrdinalIgnoreCase)).OrderByDescending(x => x.Day))
             {
                 var card = new DockPanel(); var forget = Button("忘掉", () => { store.Data.Experiences.Remove(exp); Persist(); Refresh(); }); DockPanel.SetDock(forget, Dock.Right); card.Children.Add(forget); var text = new StackPanel(); text.Children.Add(MacTheme.Text(exp.Kind, 13, true)); Hint(text, $"{exp.Day} · 当天 {exp.Count} 次 · 来自实际互动"); card.Children.Add(text); rows.Children.Add(MacTheme.Card(card));
             }
-            if (rows.Children.Count == 0) { var empty = MacTheme.Hint(tab == 0 ? "还没有这些记忆。你可以告诉我：‘叫我珺大王’、‘我喜欢茉莉花茶’。" : "还没有这些共同经历。摸摸头、喂食或陪我玩，都会慢慢写进来。"); empty.Margin = new Thickness(0, 24, 0, 24); rows.Children.Add(empty); }
+            if (rows.Children.Count == 0) { var empty = MacTheme.Hint(tab == 2 ? "还没有笔记。可以在聊天里说：记下：买牛奶。" : tab == 0 ? "还没有这些记忆。你可以告诉我：‘叫我珺大王’、‘我喜欢茉莉花茶’。" : "还没有这些共同经历。摸摸头、喂食或陪我玩，都会慢慢写进来。"); empty.Margin = new Thickness(0, 24, 0, 24); rows.Children.Add(empty); }
         }
-        head.Children.Add(MacTheme.Segments(["主人资料与喜好", "共同经历"], 0, i => { tab = i; Refresh(); }));
-        head.Children.Add(MacTheme.Toggle("显示旧版本和已过期的记忆", false, v => { old = v; Refresh(); }));
+        head.Children.Add(MacTheme.Segments(["主人资料与喜好", "共同经历", "笔记"], 0, i => { tab = i; Refresh(); }));
+        head.Children.Add(Button("新增笔记", () => EditNote(null)));
+        head.Children.Add(MacTheme.Toggle("显示旧版本、过期记忆和归档笔记", false, v => { old = v; Refresh(); }));
         var manual = new Expander { Header = "主人手写的资料", Margin = new Thickness(0, 4, 0, 8) }; var manualPanel = new StackPanel(); var memory = new TextBox { Text = store.Data.Memory, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 80, MaxLength = 8000, VerticalScrollBarVisibility = ScrollBarVisibility.Auto }; manualPanel.Children.Add(memory); manualPanel.Children.Add(Button("保存", () => { store.Data.Memory = memory.Text; Persist(); })); manual.Content = manualPanel; head.Children.Add(manual);
         foot.Children.Add(MacTheme.Divider()); Hint(foot, "记错了？在聊天里重新告诉我。忘掉记忆会同时清空短期聊天，避免从旧对话重新想起。清空聊天本身会保留小本本。");
-        HeaderAccessory(head, Button("清空全部", () => { if (!Confirm("清空主人资料、共同经历和聊天记录？")) return; store.Data.Facts.Clear(); store.Data.Experiences.Clear(); store.Data.Memory = ""; store.Data.History.Clear(); memory.Clear(); conversation.Children.Clear(); Persist(); Refresh(); }));
+        HeaderAccessory(head, Button("清空记忆", () => { if (!Confirm("清空主人资料、共同经历和聊天记录？独立保存的笔记会保留。")) return; store.Data.Facts.Clear(); store.Data.Experiences.Clear(); store.Data.Memory = ""; store.Data.History.Clear(); store.Data.PendingReminder = null; memory.Clear(); conversation.Children.Clear(); Persist(); Refresh(); }));
         var storage = new DockPanel(); var open = Button("打开存储位置", OpenStorage); DockPanel.SetDock(open, Dock.Right); storage.Children.Add(open); storage.Children.Add(MacTheme.Hint("记忆保存在这台电脑上")); foot.Children.Add(storage);
-        page.Children.Add(MacTheme.Scroll(rows)); search.TextChanged += (_, _) => Refresh(); page.Loaded += (_, _) => Refresh(); Refresh(); return page;
+        RefreshWithTools(page, Refresh); page.Children.Add(MacTheme.Scroll(rows)); search.TextChanged += (_, _) => Refresh(); page.Loaded += (_, _) => Refresh(); Refresh(); return page;
     }
     private UIElement Memos()
     {
@@ -163,7 +178,7 @@ public sealed partial class Dashboard
             var item = editing ?? new Memo(); item.Title = title.Text.Trim(); item.Due = new DateTimeOffset(date, TimeZoneInfo.Local.GetUtcOffset(date)); item.Notified = false; if (editing is null) store.Data.Memos.Add(item); if (Persist()) { Reset(); Refresh(); error.Text = ""; }
         }; editor.Children.Add(Row(MacTheme.Text("提醒时间  ", 12), due, saveMemo, cancelEdit));
         head.Children.Add(MacTheme.Card(editor)); head.Children.Add(error); head.Children.Add(MacTheme.Toggle("显示已完成和已取消", false, v => { finished = v; Refresh(); }));
-        foot.Children.Add(MacTheme.Divider()); Hint(foot, "时间按电脑当前时区显示。需要保持噜噜运行；错过的到点提醒会在恢复后补上。不填完整时间时，噜噜会先问清楚。"); foot.Children.Add(Button("打开存储位置", OpenStorage)); page.Children.Add(MacTheme.Scroll(rows)); page.Loaded += (_, _) => Refresh(); Refresh(); return page;
+        foot.Children.Add(MacTheme.Divider()); Hint(foot, "时间按电脑当前时区显示。需要保持噜噜运行；错过的到点提醒会在恢复后补上。不填完整时间时，噜噜会先问清楚。"); foot.Children.Add(Button("打开存储位置", OpenStorage)); page.Children.Add(MacTheme.Scroll(rows)); RefreshWithTools(page, Refresh); page.Loaded += (_, _) => Refresh(); Refresh(); return page;
     }
     private UIElement NewsPanel()
     {
@@ -218,7 +233,7 @@ public sealed partial class Dashboard
         var bind = Button("设备绑定", () => MailBinding(Refresh)); bind.HorizontalAlignment = HorizontalAlignment.Right; toolbar.Children.Add(bind);
         var selection = new DockPanel(); var compose = Button("写一封信", () => MailCompose(Refresh)); compose.VerticalAlignment = VerticalAlignment.Center; DockPanel.SetDock(compose, Dock.Right); selection.Children.Add(compose); retry.VerticalAlignment = VerticalAlignment.Center; DockPanel.SetDock(retry, Dock.Right); selection.Children.Add(retry); selection.Children.Add(MacTheme.Segments(["收到的信", "寄出的信"], 0, i => { tab = i; selected = null; Refresh(); Read(); })); head.Children.Add(selection);
         foot.Children.Add(MacTheme.Divider()); Hint(foot, "两台电脑都需运行 Meow 并启用信箱。对方离线时，信保留在待寄箱并自动重试；“已送达”表示对方已保存。打开后的信会继续保留在本机信箱里。");
-        page.Children.Add(layout); page.Loaded += (_, _) => Refresh(); Refresh(); Read(); return page;
+        page.Children.Add(layout); RefreshWithTools(page, Refresh); page.Loaded += (_, _) => Refresh(); Refresh(); Read(); return page;
     }
     private static string MailDate(MailEntry entry) => DateTimeOffset.TryParse(entry.Letter.createdAt, out var d) ? d.LocalDateTime.ToString("M月d日 HH:mm") : "";
     private void MailBinding(Action refresh)
@@ -234,8 +249,19 @@ public sealed partial class Dashboard
     private void MailCompose(Action refresh)
     {
         var p = Panel(); PageTitle(p, "写一封信 💌"); Hint(p, "信件会寄到另一只噜噜的信箱里。最多 5000 字。");
-        var draft = new TextBox { AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 250, MaxLength = 5000, VerticalScrollBarVisibility = ScrollBarVisibility.Auto }; p.Children.Add(draft); var result = MacTheme.Hint(""); var sendMail = Button("寄出", () => { }); var window = MacTheme.Window("写一封信", 460, 430, p);
-        sendMail.Click += async (_, _) => { sendMail.IsEnabled = false; try { if (!store.Data.Mail.Enabled) throw new InvalidOperationException("请先启用通信。"); pet.Mailbox.Queue(draft.Text); draft.Clear(); refresh(); window.Close(); await pet.Mailbox.Tick(); refresh(); } catch (Exception e) { result.Text = e.Message; } finally { sendMail.IsEnabled = true; } };
-        p.Children.Add(Row(sendMail, Button("取消", window.Close))); p.Children.Add(result); window.Show();
+        var draft = new TextBox { Text = store.Data.Mail.Draft?.Body ?? "", AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 250, MaxLength = 5000, VerticalScrollBarVisibility = ScrollBarVisibility.Auto }; p.Children.Add(draft); var result = MacTheme.Hint(""); var sendMail = Button("寄出", () => { }); var window = MacTheme.Window("写一封信", 460, 430, p);
+        var saveDraft = Button("保存草稿", () => { });
+        saveDraft.Click += async (_, _) => { var receipts = await localTools.Execute([ConversationTools.Call("mail.draft", new { body = draft.Text })], "保存草稿", Guid.NewGuid(), default); result.Text = receipts[0].Ok ? "草稿已保存，尚未寄出。" : receipts[0].Text; };
+        sendMail.Click += async (_, _) => { sendMail.IsEnabled = false; try { if (!store.Data.Mail.Enabled) throw new InvalidOperationException("请先启用通信。"); var saved = store.Data.Mail.Draft; pet.Mailbox.Queue(draft.Text, saved is not null && saved.Body == draft.Text && saved.PeerID == store.Data.Mail.PeerID ? saved.Id : null); draft.Clear(); refresh(); window.Close(); await pet.Mailbox.Tick(); refresh(); } catch (Exception e) { result.Text = e.Message; } finally { sendMail.IsEnabled = true; } };
+        p.Children.Add(Row(sendMail, saveDraft, Button("取消", window.Close))); p.Children.Add(result); window.Show();
+    }
+    private void EditNote(NotebookEntry? note)
+    {
+        var panel = Panel(); PageTitle(panel, note is null ? "新增笔记" : "编辑笔记");
+        var title = new TextBox { Text = note?.Title ?? "", MaxLength = 120 }; var body = new TextBox { Text = note?.Body ?? "", MaxLength = 8000, Height = 240, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
+        Label(panel, "标题"); panel.Children.Add(title); Label(panel, "内容"); panel.Children.Add(body); var error = MacTheme.Hint(""); panel.Children.Add(error);
+        var window = MacTheme.Window("噜噜的笔记", 460, 440, panel); var save = Button("保存", () => { });
+        save.Click += async (_, _) => { var results = await localTools.Execute([ConversationTools.Call(note is null ? "note.add" : "note.update", new { query = note?.Id.ToString() ?? "", title = title.Text, body = body.Text })], note is null ? "新增笔记" : "修改笔记", Guid.NewGuid(), default); if (results[0].Ok) { ToolsChanged?.Invoke(); window.Close(); } else error.Text = results[0].Text; };
+        panel.Children.Add(Row(save, Button("取消", window.Close))); window.Show();
     }
 }

@@ -1,0 +1,30 @@
+{
+  "scope": "One separated arm plus head/torso; not a full-body locomotion rig",
+  "bones": 7,
+  "fps": 30,
+  "duration_seconds": 4,
+  "arm_only_face_max_displacement": 0,
+  "hand_samples": [
+    {
+      "seconds": 1.3,
+      "min_body_distance": 0.0001004706064122729,
+      "penetrating_sample_count": 119
+    },
+    {
+      "seconds": 1.8,
+      "min_body_distance": 0.0005805651308037341,
+      "penetrating_sample_count": 119
+    },
+    {
+      "seconds": 2.3,
+      "min_body_distance": 0.00016143391258083284,
+      "penetrating_sample_count": 114
+    },
+    {
+      "seconds": 2.8,
+      "min_body_distance": 0.0008943643188104033,
+      "penetrating_sample_count": 106
+    }
+  ],
+  "hand_clearance_pass": false
+}

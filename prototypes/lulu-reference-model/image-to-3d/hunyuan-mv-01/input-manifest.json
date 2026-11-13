@@ -1,0 +1,37 @@
+{
+  "source": "../references-v2/lulu-turnaround-v3-tail.png",
+  "operation": "Lossless quadrant extraction only; no repainting, scaling or altered pixels.",
+  "boxes": {
+    "front": [
+      0,
+      0,
+      627,
+      627
+    ],
+    "left": [
+      627,
+      0,
+      1254,
+      627
+    ],
+    "back": [
+      0,
+      627,
+      627,
+      1254
+    ],
+    "three-quarter": [
+      627,
+      627,
+      1254,
+      1254
+    ]
+  },
+  "service": "tencent/Hunyuan3D-2mv",
+  "submitted_views": [
+    "front",
+    "back",
+    "left"
+  ],
+  "right_view": null
+}

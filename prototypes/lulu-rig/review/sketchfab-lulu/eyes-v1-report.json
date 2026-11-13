@@ -1,0 +1,25 @@
+{
+  "source_vertices": 249963,
+  "rebuilt_body_vertices": 242039,
+  "eyes": [
+    {
+      "side": "L",
+      "center": [
+        -0.3709999918937683,
+        -0.5233749747276306,
+        2.2109999656677246
+      ],
+      "modified_skin_vertices": 5360
+    },
+    {
+      "side": "R",
+      "center": [
+        0.3330000042915344,
+        -0.48844096064567566,
+        2.319000005722046
+      ],
+      "modified_skin_vertices": 5684
+    }
+  ],
+  "reference": "windows/Meow.Windows/Assets/Lulu/reference-approved-v2.png"
+}

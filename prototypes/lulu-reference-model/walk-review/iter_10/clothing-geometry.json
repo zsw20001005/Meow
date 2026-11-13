@@ -1,0 +1,87 @@
+{
+  "objects": {
+    "Lulu.Shorts": {
+      "verts": 21022,
+      "faces": 21024,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.028669163,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.5855,
+        1.1921,
+        0.4701
+      ],
+      "islands": 1
+    },
+    "Lulu.Waistband": {
+      "verts": 960,
+      "faces": 960,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.002450971,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.5472,
+        1.2074,
+        0.0416
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "info": [
+    "Contacts: Lulu.Shorts-Lulu.Waistband embedded 0.008 m"
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.7927372455596924,
+      -0.5686795711517334,
+      0.3666057288646698
+    ],
+    "max": [
+      0.7927372455596924,
+      0.638679563999176,
+      0.8483147621154785
+    ],
+    "size": [
+      1.5854744911193848,
+      1.2073590755462646,
+      0.4817090332508087
+    ],
+    "contact_tolerance": 0.0020502411848752518,
+    "parts": 2
+  },
+  "contacts": [
+    {
+      "a": "Lulu.Shorts",
+      "b": "Lulu.Waistband",
+      "depth": 0.007505662273615599,
+      "expected": false
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

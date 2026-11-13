@@ -1,0 +1,12 @@
+{
+  "clips": {
+    "Idle": 4.0,
+    "Blink": 2.0,
+    "Nod": 3.2,
+    "Look": 4.8,
+    "Wave": 4.0
+  },
+  "fps": 30,
+  "source": "lulu-face-v4.blend",
+  "scope": "Gentle prototype: breathing, stylized blink, nod, look, small raised-hand wave. No walking or full limb rig."
+}

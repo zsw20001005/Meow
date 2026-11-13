@@ -1,0 +1,51 @@
+{
+  "clips": {
+    "Idle": {
+      "duration": 4,
+      "maxMotion": 0.053029097642275855,
+      "seam": 0
+    },
+    "Blink": {
+      "duration": 2,
+      "maxMotion": 0.09217200957102596,
+      "seam": 0
+    },
+    "Nod": {
+      "duration": 3.200000047683716,
+      "maxMotion": 0.09782996330050352,
+      "seam": 0
+    },
+    "Look": {
+      "duration": 4.800000190734863,
+      "maxMotion": 0.10493417421222002,
+      "seam": 0
+    },
+    "Wave": {
+      "duration": 4,
+      "maxMotion": 0.06531869978428134,
+      "seam": 0
+    }
+  },
+  "transitions": [
+    {
+      "to": "Wave",
+      "jump": 0
+    },
+    {
+      "to": "Look",
+      "jump": 0
+    },
+    {
+      "to": "Nod",
+      "jump": 0
+    },
+    {
+      "to": "Blink",
+      "jump": 0
+    },
+    {
+      "to": "Idle",
+      "jump": 0
+    }
+  ]
+}

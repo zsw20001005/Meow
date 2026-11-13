@@ -126,12 +126,12 @@ internal static class VisualChecks
         catch (Exception e) { log.Add("FAIL " + e); File.WriteAllLines(Path.Combine(output, "results.txt"), log); return 1; }
         finally { if (store is not null) Directory.Delete(store.DirectoryPath, true); }
     }
-    private static IEnumerable<T> Find<T>(DependencyObject root) where T : DependencyObject
+    internal static IEnumerable<T> Find<T>(DependencyObject root) where T : DependencyObject
     {
         if (root is T match) yield return match;
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++) foreach (var child in Find<T>(VisualTreeHelper.GetChild(root, i))) yield return child;
     }
-    private static void Save(FrameworkElement element, double w, double h, string file, double scale = 1)
+    internal static void Save(FrameworkElement element, double w, double h, string file, double scale = 1)
     {
         element.Measure(new Size(w, h)); element.Arrange(new Rect(0, 0, w, h)); element.UpdateLayout();
         var bitmap = new RenderTargetBitmap((int)Math.Ceiling(w * scale), (int)Math.Ceiling(h * scale), 96 * scale, 96 * scale, PixelFormats.Pbgra32); bitmap.Render(element);

@@ -1,3 +1,6 @@
 # Editable Lulu models are stored in LFS; generated frame caches stay local.
-prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/**/*.blend filter=lfs diff=lfs merge=lfs -text
-prototypes/lulu-reference-model/image-to-3d/hunyuan-tpose-02/**/*.glb filter=lfs diff=lfs merge=lfs -text
+prototypes/**/*.blend filter=lfs diff=lfs merge=lfs -text
+prototypes/**/*.glb filter=lfs diff=lfs merge=lfs -text
+prototypes/**/*.stl filter=lfs diff=lfs merge=lfs -text
+prototypes/**/*.zip filter=lfs diff=lfs merge=lfs -text
+prototypes/**/*.npz filter=lfs diff=lfs merge=lfs -text

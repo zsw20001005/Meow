@@ -26,6 +26,7 @@ public sealed class MailEntry
 }
 public sealed class MailState
 {
+    public MailDraft? Draft { get; set; }
     public bool Enabled { get; set; }
     public string Secret { get; set; } = "";
     public string DeviceID { get; set; } = "";
@@ -33,6 +34,12 @@ public sealed class MailState
     public string PeerCode { get; set; } = "";
     public string PeerID { get; set; } = "";
     public List<MailEntry> Entries { get; set; } = [];
+}
+public sealed class MailDraft
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string Body { get; set; } = "";
+    public string PeerID { get; set; } = "";
 }
 public sealed class MailboxService(Store store) : IDisposable
 {
@@ -53,6 +60,8 @@ public sealed class MailboxService(Store store) : IDisposable
     {
         if (process is { HasExited: false }) return;
         string directory = Path.Combine(AppContext.BaseDirectory, "mailbridge");
+        if (!File.Exists(Path.Combine(directory, "node.exe")) || !File.Exists(Path.Combine(directory, "bridge.mjs")))
+            throw new IOException("尚未安装信箱扩展包。请安装到噜噜所在目录，重启后即可通信；历史信件和草稿会保留。");
         var info = new ProcessStartInfo(Path.Combine(directory, "node.exe")) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, RedirectStandardError = true }; info.ArgumentList.Add(Path.Combine(directory, "bridge.mjs"));
         process = Process.Start(info) ?? throw new IOException("无法启动通信模块。"); var current = process;
         _ = Task.Run(async () => { try { while (await current.StandardOutput.ReadLineAsync() is { } line) { using var doc = JsonDocument.Parse(line); var r = doc.RootElement; if (pending.TryGetValue(r.GetProperty("id").GetInt32(), out var t)) { if (r.TryGetProperty("error", out var e)) t.TrySetException(new IOException(e.GetString())); else t.TrySetResult(r.GetProperty("result").Clone()); } } } finally { foreach (var t in pending.Values) t.TrySetException(new IOException("信箱进程已关闭。")); } });
@@ -73,12 +82,15 @@ public sealed class MailboxService(Store store) : IDisposable
         if (old != store.Data.Mail.PeerID) foreach (var e in store.Data.Mail.Entries.Where(x => !x.Incoming && !x.Delivered)) e.Cancelled = true;
         store.Save();
     }
-    public void Queue(string body)
+    public MailEntry Queue(string body, string? id = null)
     {
         if (string.IsNullOrWhiteSpace(body) || body.Length > 5000 || System.Text.Encoding.UTF8.GetByteCount(body) > 16384) throw new ArgumentException("信件最多5000字且不能为空。");
         if (store.Data.Mail.PeerID.Length == 0) throw new ArgumentException("请先绑定对方设备。");
-        var entry = new MailEntry { Letter = new Letter { senderID = store.Data.Mail.DeviceID, recipientID = store.Data.Mail.PeerID, body = body } };
+        if (id is not null && !Guid.TryParse(id, out _)) throw new ArgumentException("无效的信件编号。");
+        if (id is not null && store.Data.Mail.Entries.FirstOrDefault(e => !e.Incoming && e.Letter.id == id) is { } existing) return existing;
+        var entry = new MailEntry { Letter = new Letter { id = id ?? Guid.NewGuid().ToString(), senderID = store.Data.Mail.DeviceID, recipientID = store.Data.Mail.PeerID, body = body } };
         store.Data.Mail.Entries.Add(entry); try { store.Save(); } catch { store.Data.Mail.Entries.Remove(entry); throw; }
+        return entry;
     }
     public async Task Tick()
     {

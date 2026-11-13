@@ -13,7 +13,7 @@ internal sealed class LocalEngine : IDisposable
         string root = Path.Combine(AppContext.BaseDirectory, "local-engine");
         string exe = Directory.Exists(root) ? Directory.EnumerateFiles(root, "llama-server.exe", SearchOption.AllDirectories).FirstOrDefault() ?? "" : "";
         string model = Path.Combine(root, "model.gguf");
-        if (!File.Exists(exe) || !File.Exists(model)) throw new IOException("请先运行 scripts/prepare_windows_local.ps1，并将 local-engine 目录放在 Meow.exe 旁。");
+        if (!File.Exists(exe) || !File.Exists(model)) throw new IOException("尚未安装本地模型扩展包。可以安装扩展包，或在设置里连接已有的本地模型服务。");
         var start = new ProcessStartInfo(exe) { UseShellExecute = false, CreateNoWindow = true, WorkingDirectory = Path.GetDirectoryName(exe)!, RedirectStandardError = true, RedirectStandardOutput = true };
         foreach (string arg in new[] { "-m", model, "--host", "127.0.0.1", "--port", "8080", "-c", "4096", "--alias", "local" }) start.ArgumentList.Add(arg);
         process = Process.Start(start) ?? throw new IOException("本地推理服务启动失败。"); var current = process;

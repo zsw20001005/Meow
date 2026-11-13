@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace Meow.Windows;
 
-// Offline video frames. A small atlas cache bounds decoded texture memory.
+// Offline video frames. Pages are compressed; live playback reuses one surface.
 internal sealed class LuluVideo
 {
     internal sealed record Clip(string File, int Frames, double Fps, string Mode, int StillFrame);
@@ -14,25 +14,22 @@ internal sealed class LuluVideo
     internal static int CellSize { get; private set; } = 256;
     private static int Columns = 8;
     internal static int PageFrames { get; private set; } = int.MaxValue;
+    internal static readonly HashSet<string> MissingClips = new();
     internal static readonly Dictionary<string, Clip> Clips = LoadManifest();
     internal static bool Available => Clips.ContainsKey("idle");
-    private static readonly Dictionary<string, BitmapSource> Atlases = new();
-    private static readonly Dictionary<string, Task<BitmapSource>> Pending = new();
+    private static readonly Dictionary<string, LuluFrameBuffer> Atlases = new();
+    private static readonly Dictionary<string, Task<LuluFrameBuffer>> Pending = new();
     private static readonly LinkedList<string> Recent = new();
-    private static readonly Lazy<Task<BitmapSource[]>> WalkingFrames = new(() => Task.Run(() =>
+    private static readonly Dictionary<(string Key, int Index), BitmapSource> Snapshots = new();
+    private static readonly LinkedList<(string Key, int Index)> SnapshotRecent = new();
+    private static readonly Lazy<byte[][]> IdlePoses = new(() => Enumerable.Range(0, (Clips["idle"].Frames + 1) / 2)
+        .Select(i => PosePixels(Frame("idle", i * 2 / Clips["idle"].Fps))).ToArray());
+    private readonly LuluPlaybackFrame playback = new();
+    private static readonly Lazy<Task<LuluFrameBuffer>> WalkingFrames = new(() => Task.Run(() =>
     {
         var clip = Clips["walk"];
-        BitmapSource? decoded = null;
-        var result = new BitmapSource[clip.Frames]; var pixels = new byte[CellSize * CellSize * 4];
-        for (int i = 0; i < result.Length; i++)
-        {
-            int local = i % PageFrames;
-            if (local == 0) decoded = new FormatConvertedBitmap(LoadPage(clip, i), PixelFormats.Pbgra32, null, 0);
-            decoded!.CopyPixels(new Int32Rect(local % Columns * CellSize, local / Columns * CellSize, CellSize, CellSize), pixels, CellSize * 4, 0);
-            var frame = BitmapSource.Create(CellSize, CellSize, 96, 96, PixelFormats.Pbgra32, null, pixels, CellSize * 4);
-            frame.Freeze(); result[i] = frame;
-        }
-        return result;
+        return LuluFrameBuffer.Load(CellSize, CellSize, clip.Frames, Columns, PageFrames, page => LoadPage(clip, page * PageFrames),
+            Enumerable.Range(0, (clip.Frames + PageFrames - 1) / PageFrames).Select(page => Path.Combine(Root, PageFile(clip, page * PageFrames))).ToArray());
     }));
     internal static void WarmUp()
     {
@@ -63,7 +60,10 @@ internal sealed class LuluVideo
         foreach (var item in document.RootElement.GetProperty("clips").EnumerateObject())
         {
             var c = item.Value;
-            clips[item.Name] = new(c.GetProperty("file").GetString()!, c.GetProperty("frames").GetInt32(), c.GetProperty("fps").GetDouble(), c.GetProperty("mode").GetString()!, c.TryGetProperty("stillFrame", out var still) ? still.GetInt32() : 0);
+            var clip = new Clip(c.GetProperty("file").GetString()!, c.GetProperty("frames").GetInt32(), c.GetProperty("fps").GetDouble(), c.GetProperty("mode").GetString()!, c.TryGetProperty("stillFrame", out var still) ? still.GetInt32() : 0);
+            int pageCount = (int)Math.Ceiling((double)clip.Frames / PageFrames);
+            if (Enumerable.Range(0, pageCount).All(page => File.Exists(Path.Combine(Root, PageFile(clip, page * PageFrames))))) clips[item.Name] = clip;
+            else MissingClips.Add(item.Name);
         }
         return clips;
     }
@@ -79,14 +79,28 @@ internal sealed class LuluVideo
     internal static BitmapSource Frame(string key, double seconds)
     {
         var clip = Clips[key];
-        // One immutable decode for sustained walking: no WIC crop/decode or
-        // atlas eviction at every frame or every lap of the loop.
-        if (key == "walk") return WalkingFrames.Value.GetAwaiter().GetResult()[FrameIndex(clip, seconds)];
-        int index = FrameIndex(clip, seconds), local = index % PageFrames;
+        // Long clips use indexed frame packets; no PNG atlas I/O during loops.
+        if (key == "walk") return WalkingFrames.Value.GetAwaiter().GetResult().Frame(FrameIndex(clip, seconds));
+        int index = FrameIndex(clip, seconds);
+        var id = (key, index);
+        if (!Snapshots.TryGetValue(id, out var frame))
+        {
+            var pixels = new byte[CellSize * CellSize * 4]; CopyFrame(clip, index, pixels);
+            frame = BitmapSource.Create(CellSize, CellSize, 96, 96, PixelFormats.Pbgra32, null, pixels, CellSize * 4);
+            frame.Freeze(); Snapshots[id] = frame;
+        }
+        SnapshotRecent.Remove(id); SnapshotRecent.AddLast(id);
+        while (SnapshotRecent.Count > 6) { Snapshots.Remove(SnapshotRecent.First!.Value); SnapshotRecent.RemoveFirst(); }
+        return frame;
+    }
+
+    private static void CopyFrame(Clip clip, int index, byte[] pixels)
+    {
+        int local = index % PageFrames;
         string file = PageFile(clip, index);
         if (!Atlases.TryGetValue(file, out var atlas))
         {
-            atlas = Pending.Remove(file, out var pending) ? pending.GetAwaiter().GetResult() : LoadPage(clip, index); Atlases[file] = atlas;
+            atlas = Pending.Remove(file, out var pending) ? pending.GetAwaiter().GetResult() : LoadFrames(clip, index); Atlases[file] = atlas;
         }
         Recent.Remove(file); Recent.AddLast(file);
         while (Recent.Count > 3) { var oldest = Recent.First!.Value; Recent.RemoveFirst(); Atlases.Remove(oldest); }
@@ -94,16 +108,19 @@ internal sealed class LuluVideo
         string? nextFile = next < clip.Frames ? PageFile(clip, next) : clip.Mode == "loop" ? PageFile(clip, 0) : null;
         foreach (string stale in Pending.Keys.Where(k => k != nextFile).ToArray()) Pending.Remove(stale);
         if (nextFile is not null) Prefetch(clip, next < clip.Frames ? next : 0);
-        var frame = new CroppedBitmap(atlas, new Int32Rect(local % Columns * CellSize, local / Columns * CellSize, CellSize, CellSize)); frame.Freeze();
-        return frame;
+        atlas.CopyFrame(local, pixels);
     }
 
     private static string PageFile(Clip clip, int index) => clip.File.Replace("{page}", (index / PageFrames).ToString(System.Globalization.CultureInfo.InvariantCulture));
     private static void Prefetch(Clip clip, int index)
     {
         string file = PageFile(clip, index);
-        if (!Atlases.ContainsKey(file) && !Pending.ContainsKey(file)) Pending[file] = Task.Run(() => LoadPage(clip, index));
+        if (!Atlases.ContainsKey(file) && !Pending.ContainsKey(file)) Pending[file] = Task.Run(() => LoadFrames(clip, index));
     }
+    private static LuluFrameBuffer LoadFrames(Clip clip, int index)
+        => LuluFrameBuffer.Load(CellSize, CellSize, Math.Min(PageFrames, clip.Frames - index / PageFrames * PageFrames),
+            Columns, PageFrames, _ => LoadPage(clip, index),
+            index < PageFrames || clip == Clips["idle"] || clip.Mode == "still" ? [Path.Combine(Root, PageFile(clip, index))] : null);
     private static BitmapSource LoadPage(Clip clip, int index)
     {
         var bitmap = new BitmapImage(); bitmap.BeginInit(); bitmap.CacheOption = BitmapCacheOption.OnLoad;
@@ -111,12 +128,9 @@ internal sealed class LuluVideo
         int count = Math.Min(PageFrames, clip.Frames - index / PageFrames * PageFrames);
         if (bitmap.PixelWidth != Columns * CellSize || bitmap.PixelHeight < ((count + Columns - 1) / Columns) * CellSize)
             throw new InvalidDataException("Incomplete animation atlas: " + PageFile(clip, index));
-        // Decode on the prefetch worker, not lazily during the first frame draw.
-        var converted = new FormatConvertedBitmap(bitmap, PixelFormats.Pbgra32, null, 0);
-        int stride = bitmap.PixelWidth * 4; var pixels = new byte[stride * bitmap.PixelHeight];
-        converted.CopyPixels(pixels, stride, 0);
-        var decoded = BitmapSource.Create(bitmap.PixelWidth, bitmap.PixelHeight, 96, 96, PixelFormats.Pbgra32, null, pixels, stride);
-        decoded.Freeze(); return decoded;
+        // The worker immediately packs individual frames. Never create a second
+        // native full-atlas bitmap just to copy it into compressed frame storage.
+        return new FormatConvertedBitmap(bitmap, PixelFormats.Pbgra32, null, 0);
     }
 
     private static byte[] PosePixels(BitmapSource frame)
@@ -136,7 +150,7 @@ internal sealed class LuluVideo
         long bestError = long.MaxValue; int bestFrame = 0;
         for (int index = 0; index < idle.Frames; index += 2)
         {
-            var candidate = PosePixels(Frame("idle", index / idle.Fps));
+            var candidate = IdlePoses.Value[index / 2];
             long error = 0;
             for (int p = 0; p < target.Length; p++) error += Math.Abs(target[p] - candidate[p]);
             if (error < bestError) { bestError = error; bestFrame = index; }
@@ -174,7 +188,12 @@ internal sealed class LuluVideo
         bool breathing = keepStatePose && !pose.HasValue && key == "sleep";
         double breath = breathing ? SleepBreath(elapsed) : 0;
         if (keepStatePose && !pose.HasValue) elapsed = StatePoseTime(key, elapsed);
-        var frame = Frame(key, elapsed);
+        var clip = Clips[key]; int index = FrameIndex(clip, elapsed);
+        var frame = playback.Update(clip, index, CellSize, CellSize, pixels =>
+        {
+            if (key == "walk") WalkingFrames.Value.GetAwaiter().GetResult().CopyFrame(index, pixels);
+            else CopyFrame(clip, index, pixels);
+        });
         // Only locomotion follows horizontal facing. Food and ball always face the viewer.
         bool mirror = action == "walk" && !facingRight;
         if (mirror) { context.PushTransform(new ScaleTransform(-1, 1, 100, 100)); }

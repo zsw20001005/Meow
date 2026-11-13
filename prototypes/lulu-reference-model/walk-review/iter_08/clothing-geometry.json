@@ -1,0 +1,55 @@
+{
+  "objects": {
+    "Lulu.Shorts": {
+      "verts": 21022,
+      "faces": 21024,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.026323917,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.4358,
+        1.1521,
+        0.4682
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "info": [],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.7178815007209778,
+      -0.5760665535926819,
+      0.3680538833141327
+    ],
+    "max": [
+      0.7178815007209778,
+      0.5760679244995117,
+      0.8362428545951843
+    ],
+    "size": [
+      1.4357630014419556,
+      1.1521344184875488,
+      0.46818897128105164
+    ],
+    "contact_tolerance": 0.0018994815137796533,
+    "parts": 1
+  },
+  "contacts": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

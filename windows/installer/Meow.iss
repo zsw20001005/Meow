@@ -21,9 +21,13 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0.19041
 OutputDir={#OutputDir}
+#if DirExists(PayloadDir + "\local-engine")
 OutputBaseFilename=Meow-{#AppVersion}-Windows-x64-Setup
-SetupIconFile={#PayloadDir}\Meow.ico
-UninstallDisplayIcon={app}\Meow.ico
+#else
+OutputBaseFilename=Meow-{#AppVersion}-Windows-x64-Lite-Setup
+#endif
+SetupIconFile={#PayloadDir}\Lulu-{#AppVersion}.ico
+UninstallDisplayIcon={app}\Lulu-{#AppVersion}.ico
 WizardStyle=modern
 Compression=lzma2/fast
 SolidCompression=yes
@@ -31,21 +35,27 @@ AppMutex=Local\Meow.Windows
 CloseApplications=no
 RestartApplications=no
 SetupLogging=yes
-InfoBeforeFile=安装说明.txt
+InfoBeforeFile={#PayloadDir}\使用说明.txt
 
 [Languages]
 Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Types]
+#if DirExists(PayloadDir + "\local-engine")
 Name: "full"; Description: "完整安装（包含轻量本地模型）"
 Name: "compact"; Description: "精简安装（使用云端 API，不安装本地模型）"
 Name: "custom"; Description: "自定义安装"; Flags: iscustom
+#else
+Name: "compact"; Description: "精简版安装（使用云端 API）"
+#endif
 
 [Components]
-Name: "core"; Description: "桌面角色、全部动画、聊天与信箱"; Types: full compact custom; Flags: fixed
 #if DirExists(PayloadDir + "\local-engine")
+Name: "core"; Description: "桌面角色、全部动画、聊天与信箱"; Types: full compact custom; Flags: fixed
 Name: "localmodel"; Description: "轻量本地模型（Qwen2.5 0.5B，约 520 MB）"; Types: full
+#else
+Name: "core"; Description: "桌面角色、全部动画、云端聊天与信箱"; Types: compact; Flags: fixed
 #endif
 
 [Tasks]
@@ -59,8 +69,8 @@ Source: "{#PayloadDir}\local-engine\*"; DestDir: "{app}\local-engine"; Flags: ig
 Source: "{#VCRedist}"; Flags: dontcopy
 
 [Icons]
-Name: "{group}\Meow · 张噜噜"; Filename: "{app}\Meow.exe"; WorkingDir: "{app}"; IconFilename: "{app}\Meow.ico"
-Name: "{autodesktop}\Meow · 张噜噜"; Filename: "{app}\Meow.exe"; WorkingDir: "{app}"; IconFilename: "{app}\Meow.ico"; Tasks: desktopicon
+Name: "{group}\Meow · 张噜噜"; Filename: "{app}\Meow.exe"; WorkingDir: "{app}"; IconFilename: "{app}\Lulu-{#AppVersion}.ico"
+Name: "{autodesktop}\Meow · 张噜噜"; Filename: "{app}\Meow.exe"; WorkingDir: "{app}"; IconFilename: "{app}\Lulu-{#AppVersion}.ico"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\Meow.exe"; Description: "启动张噜噜"; Flags: nowait postinstall skipifsilent

@@ -11,11 +11,11 @@ internal sealed class LuluBedScene
 {
     private static readonly string AssetRoot = Path.Combine(AppContext.BaseDirectory, "Assets", "Lulu", "Bed");
     internal static bool Available => File.Exists(Path.Combine(AssetRoot, "manifest.json"));
-    private static readonly Lazy<Task<BitmapSource>> InitialCharacter = new(() => Task.Run(() => Decode("approach-0")));
-    private static readonly Lazy<Task<BitmapSource>> InitialBed = new(() => Task.Run(() => Decode("arrive-bed")));
-    private static readonly Lazy<Task<LuluWalkBuffer>> PreparedDeparture = new(() => Task.Run(() => LuluWalkBuffer.Load(AssetRoot)));
-    private static readonly Lazy<Task<BitmapSource>> InitialJoin = new(() => Task.Run(() => Decode("join-start-0")));
-    internal static void WarmUp() { if (!Available) return; _ = InitialCharacter.Value; _ = InitialBed.Value; _ = PreparedDeparture.Value; if (File.Exists(AssetPath("join-start-0"))) _ = InitialJoin.Value; }
+    private static readonly Lazy<Task<LuluBedPage>> InitialCharacter = new(() => Task.Run(() => Decode("approach-0")));
+    private static readonly Lazy<Task<LuluBedPage>> InitialBed = new(() => Task.Run(() => Decode("arrive-bed")));
+    private readonly Task<LuluWalkBuffer> preparedDeparture;
+    private static readonly Lazy<Task<LuluBedPage>> InitialJoin = new(() => Task.Run(() => Decode("join-start-0")));
+    internal static void WarmUp() { if (!Available) return; _ = InitialCharacter.Value; _ = InitialBed.Value; if (File.Exists(AssetPath("join-start-0"))) _ = InitialJoin.Value; }
     private LuluWalkBuffer? departure;
     private WriteableBitmap? departureImage;
     private byte[]? departurePixels;
@@ -24,13 +24,13 @@ internal sealed class LuluBedScene
     private (string Clip, int Index) mirroredFrameId;
     private readonly Dictionary<string, int> frames = new();
     private readonly Dictionary<string, double> rates = new();
-    private readonly Dictionary<string, BitmapSource> cache = new();
+    private readonly Dictionary<string, LuluBedPage> cache = new();
     private readonly LinkedList<string> recent = new();
-    private readonly Dictionary<string, Task<BitmapSource>> pending = new();
+    private readonly Dictionary<string, Task<LuluBedPage>> pending = new();
     private readonly Dictionary<string, (int Width, int Height)> sizes = new();
     private BitmapSource? lastFrame;
     private (string Clip, int Index) lastFrameId;
-    private readonly int width, height, columns, pageFrames, split;
+    private readonly int width, height, pageFrames, split;
     private readonly double scale, x, y, fps;
     private readonly Dictionary<string, double[]> roots = new();
     private readonly Dictionary<(int Width, int Height), (WriteableBitmap Image, byte[] Pixels)> frameBuffers = new();
@@ -87,7 +87,7 @@ internal sealed class LuluBedScene
         using var doc = JsonDocument.Parse(File.ReadAllText(Path.Combine(AssetRoot, "manifest.json")));
         var root = doc.RootElement;
         width = root.GetProperty("width").GetInt32(); height = root.GetProperty("height").GetInt32();
-        columns = root.GetProperty("columns").GetInt32(); pageFrames = root.GetProperty("pageFrames").GetInt32(); fps = root.GetProperty("fps").GetDouble();
+        pageFrames = root.GetProperty("pageFrames").GetInt32(); fps = root.GetProperty("fps").GetDouble();
         foreach (var clip in root.GetProperty("clips").EnumerateObject())
         {
             frames[clip.Name] = clip.Value.GetProperty("frames").GetInt32();
@@ -105,6 +105,9 @@ internal sealed class LuluBedScene
         pending["arrive-bed"] = InitialBed.Value; pending["approach-0"] = InitialCharacter.Value;
         if (frames.ContainsKey("join-start")) pending["join-start-0"] = InitialJoin.Value;
         Prefetch($"entry-{(int)(ApproachLead * rates["entry"]) / pageFrames}");
+        // Arrival and getting into bed provide lead time before even an immediate
+        // wake request can reach departure. Do not retain this in a static task.
+        preparedDeparture = LuluWalkBuffer.Prepare(AssetRoot);
     }
 
     // Match position and velocity when the tracking camera changes source clips.
@@ -123,7 +126,6 @@ internal sealed class LuluBedScene
         if (WakeRequested) return;
         WakeRequested = true; Prefetch("wake-0");
         if (frames.ContainsKey("join-wake")) Prefetch("join-wake-0");
-        _ = PreparedDeparture.Value;
     }
     internal void KeepSleeping() { if (Phase is "arrive" or "entry" or "loop") WakeRequested = false; }
     internal void Advance(double seconds)
@@ -142,7 +144,7 @@ internal sealed class LuluBedScene
         }
     }
 
-    private BitmapSource Load(string name)
+    private LuluBedPage Load(string name)
     {
         if (cache.TryGetValue(name, out var known)) { recent.Remove(name); recent.AddLast(name); return known; }
         long loadStart = System.Diagnostics.Stopwatch.GetTimestamp();
@@ -159,17 +161,7 @@ internal sealed class LuluBedScene
         string prefix = manifest.RootElement.TryGetProperty("assetPrefix", out var value) ? value.GetString()! : "";
         return Path.Combine(AssetRoot, prefix + name + ".png");
     }
-    private static BitmapSource Decode(string name)
-    {
-        var image = new BitmapImage(); image.BeginInit(); image.CacheOption = BitmapCacheOption.OnLoad; image.UriSource = new Uri(AssetPath(name)); image.EndInit(); image.Freeze();
-        // Materialize pixels on this worker: OnLoad alone can leave WIC decoding
-        // deferred until the first UI render of a new atlas page.
-        var converted = new FormatConvertedBitmap(image, PixelFormats.Pbgra32, null, 0);
-        int stride = image.PixelWidth * 4; var pixels = new byte[stride * image.PixelHeight];
-        converted.CopyPixels(pixels, stride, 0);
-        var decoded = BitmapSource.Create(image.PixelWidth, image.PixelHeight, 96, 96, PixelFormats.Pbgra32, null, pixels, stride);
-        decoded.Freeze(); return decoded;
-    }
+    private static LuluBedPage Decode(string name) => LuluBedPage.Load(AssetRoot, name);
     private void Prefetch(string name)
     {
         if (!cache.ContainsKey(name) && !pending.ContainsKey(name)) pending[name] = Task.Run(() => Decode(name));
@@ -182,8 +174,8 @@ internal sealed class LuluBedScene
         {
             if (departure is null)
             {
-                var start = System.Diagnostics.Stopwatch.GetTimestamp(); bool ready = PreparedDeparture.Value.IsCompletedSuccessfully;
-                departure = PreparedDeparture.Value.GetAwaiter().GetResult();
+                var start = System.Diagnostics.Stopwatch.GetTimestamp(); bool ready = preparedDeparture.IsCompletedSuccessfully;
+                departure = preparedDeparture.GetAwaiter().GetResult();
                 AssetLoadProbe?.Invoke("depart-buffer", System.Diagnostics.Stopwatch.GetElapsedTime(start).TotalMilliseconds, ready);
                 departurePixels = new byte[departure.Width * departure.Height * 4];
                 departureImage = new WriteableBitmap(departure.Width, departure.Height, 96, 96, PixelFormats.Pbgra32, null);
@@ -202,7 +194,7 @@ internal sealed class LuluBedScene
         {
             buffer = (new WriteableBitmap(size.Width, size.Height, 96, 96, PixelFormats.Pbgra32, null), new byte[size.Width * size.Height * 4]); frameBuffers[size] = buffer;
         }
-        Load($"{clip}-{page}").CopyPixels(new Int32Rect(local % columns * size.Width, local / columns * size.Height, size.Width, size.Height), buffer.Pixels, size.Width * 4, 0);
+        Load($"{clip}-{page}").CopyFrame(local, buffer.Pixels);
         buffer.Image.WritePixels(new Int32Rect(0, 0, size.Width, size.Height), buffer.Pixels, size.Width * 4, 0);
         var result = buffer.Image;
         lastFrameId = (clip, frame); return lastFrame = result;
@@ -248,7 +240,7 @@ internal sealed class LuluBedScene
             string clip = approach ? "approach" : "depart";
             double sourceTime = Phase == "settle" ? DepartureDuration + Elapsed : Complete ? frames["depart"] / rates["depart"] : Elapsed;
             context.PushTransform(new TranslateTransform(-CameraX, 0));
-            context.DrawImage(Load(approach ? "arrive-bed" : "leave-bed"), rect);
+            context.DrawImage(Load(approach ? "arrive-bed" : "leave-bed").Still, rect);
             context.Pop();
             context.DrawImage(VideoFrame(clip, sourceTime), new Rect(0, 0, 200, 200));
         }

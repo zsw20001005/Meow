@@ -9,6 +9,14 @@ public sealed class App : Application
     public static int Main(string[] args)
     {
         if (args.Contains("--selftest")) return SelfTests.Run();
+        if (args.Contains("--packagecheck")) { _ = new App(); return PackageChecks.Run(args.Contains("--core-only")); }
+        if (args.Contains("--memorycheck")) { _ = new App(); return MemoryChecks.Run(); }
+        if (args.Contains("--framecachecheck")) { _ = new App(); return FrameCacheChecks.Run(); }
+        if (args.Contains("--windowcheck")) { _ = new App { ShutdownMode = ShutdownMode.OnExplicitShutdown }; return WindowBehaviorChecks.Run(); }
+        if (args.Contains("--runtime-memorycheck")) return RuntimeMemoryChecks.Run(new App { ShutdownMode = ShutdownMode.OnExplicitShutdown });
+        if (args.Contains("--diskframecheck")) return DiskFrameChecks.Run();
+        if (args.Contains("--toolcheck")) return LocalToolChecks.Run().GetAwaiter().GetResult();
+        if (args.Contains("--chattoolcheck")) { _ = new App(); return ChatToolChecks.Run(); }
         if (args.Contains("--mailcheck")) return IntegrationChecks.Mail().GetAwaiter().GetResult();
         if (args.Contains("--cloudcheck")) return IntegrationChecks.Cloud().GetAwaiter().GetResult();
         if (args.Contains("--featurecheck")) return IntegrationChecks.Features().GetAwaiter().GetResult();

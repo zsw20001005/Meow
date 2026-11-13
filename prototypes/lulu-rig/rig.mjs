@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 const V=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
-export function createLulu() {
+export function createLulu({wardrobe=false,texture=true}={}) {
   const model=new THREE.Group();model.name='ZhangLulu';
   const bones=[],named={};
   function bone(name,parent,x,y,z){const b=new THREE.Bone();b.name=name;b.position.set(x,y,z);(parent||model).add(b);b.index=bones.length;bones.push(b);named[name]=b;return b;}
@@ -13,9 +13,9 @@ export function createLulu() {
     bone('eye_'+side,head,sign*.34,.29,.58);
   }
   model.updateMatrixWorld(true);
-  const skeleton=new THREE.Skeleton(bones),parts=new Map();
+  const skeleton=new THREE.Skeleton(bones),parts=new Map();let region='body';
   function grainTexture(){const c=document.createElement('canvas');c.width=c.height=256;const cx=c.getContext('2d'),im=cx.createImageData(256,256);let s=1987;for(let i=0;i<im.data.length;i+=4){s=(s*1664525+1013904223)>>>0;const n=115+(s%26);im.data.set([n,n,n,255],i);}cx.putImageData(im,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(9,9);return t;}
-  const bump=grainTexture();
+  const bump=texture?grainTexture():null;
   const material=(name,color,extra={})=>new THREE.MeshStandardMaterial({name,color,roughness:.68,metalness:0,bumpMap:bump,bumpScale:.006,...extra});
   const mats={yellow:material('warm golden plush','#f5bb2f'),orange:material('soft orange muzzle','#f18b0c'),shorts:material('tangerine shorts','#dc7020'),cuff:material('stitched waistband','#cf651a'),hair:material('dark chestnut hair','#30251c',{roughness:.82,bumpScale:.01}),groove:material('hair strand valleys','#241b14',{roughness:.9,bumpScale:.005}),inner:material('inner ear','#edaa31'),white:material('ivory eyes','#fff8e7',{roughness:.25,bumpMap:null}),iris:material('brown eyes','#29190d',{roughness:.16,bumpMap:null}),black:material('eye pupils','#080807',{roughness:.12,bumpMap:null}),glasses:material('bronze round glasses','#704820',{metalness:.45,roughness:.32,bumpMap:null}),mouth:material('small smile','#8b4517',{bumpMap:null}),glint:new THREE.MeshBasicMaterial({name:'eye catchlights',color:'#fffaf2'})};
   const rigid=b=>()=>[[b.index,1]];
@@ -25,12 +25,13 @@ export function createLulu() {
     const p=geometry.attributes.position,ids=[],weights=[];
     for(let i=0;i<p.count;i++){const v=V().fromBufferAttribute(p,i),w=weight(v);for(let k=0;k<4;k++){ids.push(w[k]?.[0]||0);weights.push(w[k]?.[1]||0);}}
     geometry.setAttribute('skinIndex',new THREE.Uint16BufferAttribute(ids,4));geometry.setAttribute('skinWeight',new THREE.Float32BufferAttribute(weights,4));
-    if(!parts.has(mat))parts.set(mat,[]);parts.get(mat).push(geometry);
+    const key=wardrobe?region+':'+mat.name:mat.name;
+    if(!parts.has(key))parts.set(key,{mat,region,geometries:[]});parts.get(key).geometries.push(geometry);
   }
   function ellipsoid(mat,pos,scale,b=spine,rot){add(new THREE.SphereGeometry(1,48,32),mat,V(...pos),V(...scale),typeof b==='function'?b:rigid(b),rot);}
   function tube(mat,points,r,b=head){const curve=new THREE.CatmullRomCurve3(points.map(p=>V(...p)));add(new THREE.TubeGeometry(curve,32,r,8,false),mat,null,null,rigid(b));}
   // Rounded torso and separate short trouser legs keep the silhouette compact.
-  ellipsoid(mats.yellow,[0,1.28,0],[.73,.71,.48],torso);
+  region='torso';ellipsoid(mats.yellow,[0,1.28,0],[.73,.71,.48],torso);region='body';
   ellipsoid(mats.shorts,[0,.70,-.005],[.71,.40,.46],pelvis);
   const waist=new THREE.TorusGeometry(.64,.038,12,80);add(waist,mats.cuff,V(0,.99,0),V(1,.70,1),rigid(pelvis),new THREE.Euler(Math.PI/2,0,0));
   for(const [side,s] of [['L',-1],['R',1]]) {
@@ -78,7 +79,8 @@ export function createLulu() {
   for(let i=0;i<21;i++){const phi=(i+.5)/21*Math.PI*2,end=1.52-.37*Math.max(0,Math.cos(phi))+.045*Math.cos(phi*17);const points=[];for(let j=0;j<=12;j++){const theta=.12+(end-.16)*j/12,ridge=1+.028*Math.cos(phi*21)*Math.sin(theta)**1.5;points.push([.756*Math.sin(theta)*Math.sin(phi)*ridge,2.58+.661*Math.cos(theta),.591*Math.sin(theta)*Math.cos(phi)*ridge-.015]);}tube(mats.groove,points,.005);}
   tube(mats.hair,[[0,3.19,0],[.025,3.30,.015],[-.055,3.39,.025],[-.10,3.40,.025]],.043);
   ellipsoid(mats.yellow,[0,.83,-.47],[.105,.105,.12],pelvis);
-  for(const [mat,geometries] of parts){const merged=mergeGeometries(geometries,false);const mesh=new THREE.SkinnedMesh(merged,mat);mesh.name=mat.name;mesh.castShadow=true;mesh.receiveShadow=true;mesh.frustumCulled=false;model.add(mesh);mesh.bind(skeleton);geometries.forEach(g=>g.dispose());}
+  const meshes=[];
+  for(const [key,{mat,region:partRegion,geometries}] of parts){const merged=mergeGeometries(geometries,false);const mesh=new THREE.SkinnedMesh(merged,mat);mesh.name=key;mesh.userData.region=partRegion;mesh.castShadow=true;mesh.receiveShadow=true;mesh.frustumCulled=false;model.add(mesh);mesh.bind(skeleton);meshes.push(mesh);geometries.forEach(g=>g.dispose());}
   const helper=new THREE.SkeletonHelper(root);helper.material.depthTest=false;helper.material.transparent=true;helper.material.opacity=.7;helper.visible=false;helper.renderOrder=20;
   function orient(b,from,to){const world=new THREE.Quaternion().setFromUnitVectors(V(0,-1,0),to.clone().sub(from).normalize());const parent=b.parent.getWorldQuaternion(new THREE.Quaternion());b.quaternion.copy(parent.invert().multiply(world));model.updateMatrixWorld(true);}
   function pose(gait) {
@@ -101,5 +103,5 @@ export function createLulu() {
     }
     model.updateMatrixWorld(true);
   }
-  return {model,skeleton,bones:named,helper,pose};
+  return {model,skeleton,bones:named,helper,pose,meshes,materials:mats};
 }

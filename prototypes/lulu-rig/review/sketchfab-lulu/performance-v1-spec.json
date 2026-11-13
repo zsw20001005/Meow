@@ -1,0 +1,11 @@
+{
+  "clips": {
+    "Idle": 6.0,
+    "Greeting": 6.0,
+    "Smile": 4.0,
+    "Curious": 4.0
+  },
+  "fps": 30,
+  "source": "lulu-motion-v1.blend",
+  "scope": "Greeting performance study: independently authored gaze, surface lids, closed smile and offset body/hand timing; original fused hand remains limited."
+}

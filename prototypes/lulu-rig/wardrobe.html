@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>噜噜的衣橱 · 换装预览</title><link rel="stylesheet" href="wardrobe.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script></head>
+<body>
+<header><a class="brand" href="wardrobe.html"><span class="brand-mark">噜</span><span>噜噜的衣橱<small>ZHANG LULU · DRESSING ROOM</small></span></a><span class="pill">独立 3D 预览</span></header>
+<main>
+<aside>
+<div class="intro"><p class="eyebrow">今天穿什么？</p><h1>换个心情，<br>一起出发。</h1><p>衣服随动作一起动。<br>试着边挥手，边换一套搭配。</p></div>
+<fieldset><legend><span>01</span> 上衣</legend><div class="options" id="tops"><button data-top="none">原来的样子</button><button data-top="tee" aria-pressed="true">日常短袖</button><button data-top="sweater">柔软卫衣</button></div></fieldset>
+<fieldset><legend><span>02</span> 衣服颜色</legend><div class="swatches"><button data-color="cream" style="--swatch:#f4eee0" aria-label="奶油白" title="奶油白"></button><button data-color="sage" style="--swatch:#8baf99" aria-label="鼠尾草绿" title="鼠尾草绿"></button><button data-color="blue" style="--swatch:#92b9d1" aria-label="晴空蓝" title="晴空蓝"></button><button data-color="rose" style="--swatch:#db9c9b" aria-label="莓果粉" title="莓果粉"></button><span id="color-name">奶油白</span></div></fieldset>
+<fieldset><legend><span>03</span> 小配饰</legend><label class="select-row">圆框眼镜<select id="glasses"><option value="bronze">原色圆框</option><option value="dark">深色圆框</option><option value="none">摘下眼镜</option></select></label><label class="select-row">短裤<select id="shorts"><option value="orange">橘子汽水</option><option value="navy">深海蓝</option></select></label><label class="toggle-row">带上小背包<input type="checkbox" id="bag"><i></i></label><label class="toggle-row">头顶小橘子<input type="checkbox" id="charm"><i></i></label></fieldset>
+<button id="save" class="primary">保存这套搭配 <span>↗</span></button><button id="reset" class="quiet">恢复默认搭配</button><p id="notice" role="status" aria-live="polite">只保存在此预览中，不替换桌面噜噜。</p>
+</aside>
+<section class="studio" aria-label="三维角色预览">
+<div class="stage-head"><span class="live-dot"></span><span id="motion-status">自在站立</span><button id="pause" aria-pressed="false">暂停动作</button></div>
+<div id="viewport"><p id="loading">噜噜正在换衣服…</p></div>
+<div class="views"><button data-view="front" aria-pressed="true">正面</button><button data-view="side">侧面</button><button data-view="back">背面</button><span>拖动旋转 · 滚轮缩放</span></div>
+<div class="motion-bar"><div><small>看看穿着动起来</small><strong>动作试穿</strong></div><div class="actions"><button data-action="idle">站立</button><button data-action="walk">走路</button><button data-action="wave">挥手</button><button data-action="stretch">伸懒腰</button><button data-action="spin">转身</button></div></div>
+</section>
+</main>
+<footer><span>换装机制预览 · 角色外观仍需按现有噜噜精修</span><span>本机运行，无需登录</span></footer>
+<script type="module" src="wardrobe.mjs"></script>
+</body></html>

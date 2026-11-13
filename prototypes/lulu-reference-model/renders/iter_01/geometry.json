@@ -1,0 +1,1215 @@
+{
+  "objects": {
+    "Head": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 1.781613464,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.88,
+        1.16,
+        1.46
+      ],
+      "islands": 1
+    },
+    "Body": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 1.072379489,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.51,
+        0.89,
+        1.44
+      ],
+      "islands": 1
+    },
+    "Shorts": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.586724761,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.58,
+        0.94,
+        0.6704
+      ],
+      "islands": 1
+    },
+    "Leg.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.03857998,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.36,
+        0.38,
+        0.54
+      ],
+      "islands": 1
+    },
+    "Foot.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.042451596,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.43,
+        0.53,
+        0.3
+      ],
+      "islands": 1
+    },
+    "Arm.L": {
+      "verts": 1186,
+      "faces": 1216,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.045003741,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4805,
+        0.3333,
+        0.8728
+      ],
+      "islands": 1
+    },
+    "Thumb.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.00176522,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.13,
+        0.13,
+        0.2
+      ],
+      "islands": 1
+    },
+    "Ear.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.022594813,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.32,
+        0.26,
+        0.52
+      ],
+      "islands": 1
+    },
+    "InnerEar.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.002095702,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.19,
+        0.066,
+        0.32
+      ],
+      "islands": 1
+    },
+    "Leg.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.03857998,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.36,
+        0.38,
+        0.54
+      ],
+      "islands": 1
+    },
+    "Foot.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.042451596,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.43,
+        0.53,
+        0.3
+      ],
+      "islands": 1
+    },
+    "Arm.R": {
+      "verts": 1186,
+      "faces": 1216,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.045018696,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.4805,
+        0.3333,
+        0.8728
+      ],
+      "islands": 1
+    },
+    "Thumb.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.00176522,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.13,
+        0.13,
+        0.2
+      ],
+      "islands": 1
+    },
+    "Ear.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.022594813,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.32,
+        0.26,
+        0.52
+      ],
+      "islands": 1
+    },
+    "InnerEar.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.002095702,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.19,
+        0.066,
+        0.32
+      ],
+      "islands": 1
+    },
+    "Muzzle": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.757762109,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.73,
+        0.78,
+        0.88
+      ],
+      "islands": 1
+    },
+    "Eye.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.002737449,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.21,
+        0.096,
+        0.26
+      ],
+      "islands": 1
+    },
+    "Iris.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000626505,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.142,
+        0.044,
+        0.192
+      ],
+      "islands": 1
+    },
+    "Pupil.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000182998,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.1,
+        0.024,
+        0.146
+      ],
+      "islands": 1
+    },
+    "Highlight.L": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 1.2501e-05,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.034,
+        0.016,
+        0.044
+      ],
+      "islands": 1
+    },
+    "Frame.L": {
+      "verts": 9216,
+      "faces": 9216,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000691404,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.46,
+        0.026,
+        0.46
+      ],
+      "islands": 1
+    },
+    "Temple.L": {
+      "verts": 420,
+      "faces": 404,
+      "open_boundary_edges": 48,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3173,
+        0.5177,
+        0.0851
+      ],
+      "islands": 3
+    },
+    "Eye.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.002737449,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.21,
+        0.096,
+        0.26
+      ],
+      "islands": 1
+    },
+    "Iris.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000626505,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.142,
+        0.044,
+        0.192
+      ],
+      "islands": 1
+    },
+    "Pupil.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000182998,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.1,
+        0.024,
+        0.146
+      ],
+      "islands": 1
+    },
+    "Highlight.R": {
+      "verts": 3122,
+      "faces": 3200,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 1.2501e-05,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.034,
+        0.016,
+        0.044
+      ],
+      "islands": 1
+    },
+    "Frame.R": {
+      "verts": 9216,
+      "faces": 9216,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.000691404,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.46,
+        0.026,
+        0.46
+      ],
+      "islands": 1
+    },
+    "Temple.R": {
+      "verts": 420,
+      "faces": 404,
+      "open_boundary_edges": 48,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.3173,
+        0.5177,
+        0.0851
+      ],
+      "islands": 3
+    },
+    "Bridge": {
+      "verts": 420,
+      "faces": 404,
+      "open_boundary_edges": 48,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.2356,
+        0.0389,
+        0.0585
+      ],
+      "islands": 3
+    },
+    "Smile": {
+      "verts": 420,
+      "faces": 404,
+      "open_boundary_edges": 48,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.135,
+        0.0259,
+        0.0347
+      ],
+      "islands": 3
+    },
+    "Waistband": {
+      "verts": 12288,
+      "faces": 12288,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.003287885,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.5297,
+        0.9079,
+        0.0893
+      ],
+      "islands": 1
+    },
+    "Hair": {
+      "verts": 7170,
+      "faces": 7280,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.06720249,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.4771,
+        1.1602,
+        0.6821
+      ],
+      "islands": 1
+    },
+    "Cowlick": {
+      "verts": 612,
+      "faces": 596,
+      "open_boundary_edges": 48,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.2269,
+        0.0935,
+        0.206
+      ],
+      "islands": 3
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "info": [
+    "Contacts: Head-InnerEar.L embedded 0.051 m; Head-InnerEar.R embedded 0.051 m; Body-Leg.L embedded 0.104 m; Body-Leg.R embedded 0.104 m; Body-Muzzle embedded 0.106 m; Body-Waistband flush; Ear.L-Hair embedded 0.087 m; InnerEar.L-Hair flush; Ear.R-Hair embedded 0.087 m; InnerEar.R-Hair flush; Muzzle-Eye.L embedded 0.025 m; Muzzle-Iris.L flush; Muzzle-Eye.R embedded 0.025 m; Muzzle-Iris.R flush; Eye.L-Pupil.L flush; Iris.L-Highlight.L flush; Temple.L[island 0]-Temple.L[island 2] flush; Temple.L[island 1]-Temple.L[island 2] flush; Eye.R-Pupil.R flush; Iris.R-Highlight.R flush; Temple.R[island 0]-Temple.R[island 2] flush; Temple.R[island 1]-Temple.R[island 2] flush; Bridge[island 0]-Bridge[island 2] flush; Bridge[island 1]-Bridge[island 2] flush; Smile[island 0]-Smile[island 2] flush; Smile[island 1]-Smile[island 2] flush; Cowlick[island 0]-Cowlick[island 2] flush; Cowlick[island 1]-Cowlick[island 2] flush",
+    "42 expected embedded contacts (expect_embedded)."
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -1.002386212348938,
+      -0.8979988694190979,
+      0.0
+    ],
+    "max": [
+      1.002386212348938,
+      0.5949780941009521,
+      3.463690757751465
+    ],
+    "size": [
+      2.004772424697876,
+      1.4929769039154053,
+      3.463690757751465
+    ],
+    "contact_tolerance": 0.012,
+    "parts": 43
+  },
+  "contacts": [
+    {
+      "a": "Head",
+      "b": "Body",
+      "depth": 0.27883127331733704,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Ear.L",
+      "depth": 0.16275908052921295,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "InnerEar.L",
+      "depth": 0.05096574127674103,
+      "expected": false
+    },
+    {
+      "a": "Head",
+      "b": "Ear.R",
+      "depth": 0.16275908052921295,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "InnerEar.R",
+      "depth": 0.05096574127674103,
+      "expected": false
+    },
+    {
+      "a": "Head",
+      "b": "Muzzle",
+      "depth": 0.4214935004711151,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Eye.L",
+      "depth": 0.04055061563849449,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Temple.L[island 2]",
+      "depth": 0.06333117932081223,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Eye.R",
+      "depth": 0.04055061936378479,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Temple.R[island 2]",
+      "depth": 0.06333126127719879,
+      "expected": true
+    },
+    {
+      "a": "Head",
+      "b": "Hair",
+      "depth": 0.20921213924884796,
+      "expected": true
+    },
+    {
+      "a": "Body",
+      "b": "Shorts",
+      "depth": 0.4293942451477051,
+      "expected": true
+    },
+    {
+      "a": "Body",
+      "b": "Leg.L",
+      "depth": 0.10370045155286789,
+      "expected": false
+    },
+    {
+      "a": "Body",
+      "b": "Arm.L",
+      "depth": 0.14468491077423096,
+      "expected": true
+    },
+    {
+      "a": "Body",
+      "b": "Leg.R",
+      "depth": 0.1037004292011261,
+      "expected": false
+    },
+    {
+      "a": "Body",
+      "b": "Arm.R",
+      "depth": 0.14468491077423096,
+      "expected": true
+    },
+    {
+      "a": "Body",
+      "b": "Muzzle",
+      "depth": 0.1056961864233017,
+      "expected": false
+    },
+    {
+      "a": "Body",
+      "b": "Waistband",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Shorts",
+      "b": "Leg.L",
+      "depth": 0.2787463963031769,
+      "expected": true
+    },
+    {
+      "a": "Shorts",
+      "b": "Leg.R",
+      "depth": 0.2787039875984192,
+      "expected": true
+    },
+    {
+      "a": "Shorts",
+      "b": "Waistband",
+      "depth": 0.013910784386098385,
+      "expected": true
+    },
+    {
+      "a": "Leg.L",
+      "b": "Foot.L",
+      "depth": 0.17683763802051544,
+      "expected": true
+    },
+    {
+      "a": "Arm.L",
+      "b": "Thumb.L",
+      "depth": 0.0411192886531353,
+      "expected": true
+    },
+    {
+      "a": "Ear.L",
+      "b": "InnerEar.L",
+      "depth": 0.0525316558778286,
+      "expected": true
+    },
+    {
+      "a": "Ear.L",
+      "b": "Hair",
+      "depth": 0.08744305372238159,
+      "expected": false
+    },
+    {
+      "a": "InnerEar.L",
+      "b": "Hair",
+      "depth": 0.012334288097918034,
+      "expected": false
+    },
+    {
+      "a": "Leg.R",
+      "b": "Foot.R",
+      "depth": 0.17683763802051544,
+      "expected": true
+    },
+    {
+      "a": "Arm.R",
+      "b": "Thumb.R",
+      "depth": 0.04119773581624031,
+      "expected": true
+    },
+    {
+      "a": "Ear.R",
+      "b": "InnerEar.R",
+      "depth": 0.0525316447019577,
+      "expected": true
+    },
+    {
+      "a": "Ear.R",
+      "b": "Hair",
+      "depth": 0.08744305372238159,
+      "expected": false
+    },
+    {
+      "a": "InnerEar.R",
+      "b": "Hair",
+      "depth": 0.012358531355857849,
+      "expected": false
+    },
+    {
+      "a": "Muzzle",
+      "b": "Eye.L",
+      "depth": 0.025419073179364204,
+      "expected": false
+    },
+    {
+      "a": "Muzzle",
+      "b": "Iris.L",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Muzzle",
+      "b": "Frame.L",
+      "depth": 0.07230640202760696,
+      "expected": true
+    },
+    {
+      "a": "Muzzle",
+      "b": "Eye.R",
+      "depth": 0.025419076904654503,
+      "expected": false
+    },
+    {
+      "a": "Muzzle",
+      "b": "Iris.R",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Muzzle",
+      "b": "Frame.R",
+      "depth": 0.07230689376592636,
+      "expected": true
+    },
+    {
+      "a": "Muzzle",
+      "b": "Smile[island 0]",
+      "depth": 0.009752239100635052,
+      "expected": true
+    },
+    {
+      "a": "Muzzle",
+      "b": "Smile[island 1]",
+      "depth": 0.009752239100635052,
+      "expected": true
+    },
+    {
+      "a": "Muzzle",
+      "b": "Smile[island 2]",
+      "depth": 0.009752239100635052,
+      "expected": true
+    },
+    {
+      "a": "Eye.L",
+      "b": "Iris.L",
+      "depth": 0.027905507013201714,
+      "expected": true
+    },
+    {
+      "a": "Eye.L",
+      "b": "Pupil.L",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Iris.L",
+      "b": "Pupil.L",
+      "depth": 0.01598016917705536,
+      "expected": true
+    },
+    {
+      "a": "Iris.L",
+      "b": "Highlight.L",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Pupil.L",
+      "b": "Highlight.L",
+      "depth": 0.006088088266551495,
+      "expected": true
+    },
+    {
+      "a": "Frame.L",
+      "b": "Temple.L[island 1]",
+      "depth": 0.0,
+      "expected": true
+    },
+    {
+      "a": "Frame.L",
+      "b": "Temple.L[island 2]",
+      "depth": 0.012012037448585033,
+      "expected": true
+    },
+    {
+      "a": "Frame.L",
+      "b": "Bridge[island 1]",
+      "depth": 0.0,
+      "expected": true
+    },
+    {
+      "a": "Frame.L",
+      "b": "Bridge[island 2]",
+      "depth": 0.010549760423600674,
+      "expected": true
+    },
+    {
+      "a": "Temple.L[island 0]",
+      "b": "Temple.L[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Temple.L[island 1]",
+      "b": "Temple.L[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Eye.R",
+      "b": "Iris.R",
+      "depth": 0.027905507013201714,
+      "expected": true
+    },
+    {
+      "a": "Eye.R",
+      "b": "Pupil.R",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Iris.R",
+      "b": "Pupil.R",
+      "depth": 0.01598016917705536,
+      "expected": true
+    },
+    {
+      "a": "Iris.R",
+      "b": "Highlight.R",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Pupil.R",
+      "b": "Highlight.R",
+      "depth": 0.006088088266551495,
+      "expected": true
+    },
+    {
+      "a": "Frame.R",
+      "b": "Temple.R[island 1]",
+      "depth": 0.0,
+      "expected": true
+    },
+    {
+      "a": "Frame.R",
+      "b": "Temple.R[island 2]",
+      "depth": 0.012011954560875893,
+      "expected": true
+    },
+    {
+      "a": "Frame.R",
+      "b": "Bridge[island 0]",
+      "depth": 0.0,
+      "expected": true
+    },
+    {
+      "a": "Frame.R",
+      "b": "Bridge[island 2]",
+      "depth": 0.01054978184401989,
+      "expected": true
+    },
+    {
+      "a": "Temple.R[island 0]",
+      "b": "Temple.R[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Temple.R[island 1]",
+      "b": "Temple.R[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Bridge[island 0]",
+      "b": "Bridge[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Bridge[island 1]",
+      "b": "Bridge[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Smile[island 0]",
+      "b": "Smile[island 2]",
+      "depth": 0.0045745703391730785,
+      "expected": false
+    },
+    {
+      "a": "Smile[island 1]",
+      "b": "Smile[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Hair",
+      "b": "Cowlick[island 1]",
+      "depth": 0.009460363537073135,
+      "expected": true
+    },
+    {
+      "a": "Hair",
+      "b": "Cowlick[island 2]",
+      "depth": 0.02611524984240532,
+      "expected": true
+    },
+    {
+      "a": "Cowlick[island 0]",
+      "b": "Cowlick[island 2]",
+      "depth": 0.0,
+      "expected": false
+    },
+    {
+      "a": "Cowlick[island 1]",
+      "b": "Cowlick[island 2]",
+      "depth": 0.0,
+      "expected": false
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

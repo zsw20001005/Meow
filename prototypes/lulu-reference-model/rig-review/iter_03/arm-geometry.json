@@ -1,0 +1,57 @@
+{
+  "objects": {
+    "Lulu.Arm.L": {
+      "verts": 43048,
+      "faces": 43044,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.058320564,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5885,
+        0.87,
+        0.6221
+      ],
+      "islands": 2
+    }
+  },
+  "errors": [
+    "FLOATING: [Lulu.Arm.L[island 1]] is not connected to the main body. Closest gap 0.0077 m between Lulu.Arm.L[island 1] (center (0.648, -0.732, 1.488)) and Lulu.Arm.L[island 0]."
+  ],
+  "warnings": [],
+  "info": [],
+  "units": "m",
+  "overall": {
+    "min": [
+      0.3360045552253723,
+      -0.7613130807876587,
+      1.0762028694152832
+    ],
+    "max": [
+      0.9245266318321228,
+      0.10870687663555145,
+      1.6982555389404297
+    ],
+    "size": [
+      0.5885220766067505,
+      0.8700199723243713,
+      0.6220526695251465
+    ],
+    "contact_tolerance": 0.0012207548939217946,
+    "parts": 2
+  },
+  "contacts": [],
+  "summary": {
+    "errors": 1,
+    "warnings": 0
+  }
+}

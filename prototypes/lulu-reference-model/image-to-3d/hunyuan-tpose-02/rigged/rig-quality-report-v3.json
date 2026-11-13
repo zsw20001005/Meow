@@ -1,0 +1,127 @@
+{
+  "bone_count": 22,
+  "rest_shape_max_delta": 8.476652296380932e-07,
+  "bone_names": [
+    "mixamorig:Hips",
+    "mixamorig:Spine",
+    "mixamorig:Spine1",
+    "mixamorig:Spine2",
+    "mixamorig:Neck",
+    "mixamorig:Head",
+    "mixamorig:LeftShoulder",
+    "mixamorig:LeftArm",
+    "mixamorig:LeftForeArm",
+    "mixamorig:LeftHand",
+    "mixamorig:RightShoulder",
+    "mixamorig:RightArm",
+    "mixamorig:RightForeArm",
+    "mixamorig:RightHand",
+    "mixamorig:LeftUpLeg",
+    "mixamorig:LeftLeg",
+    "mixamorig:LeftFoot",
+    "mixamorig:LeftToeBase",
+    "mixamorig:RightUpLeg",
+    "mixamorig:RightLeg",
+    "mixamorig:RightFoot",
+    "mixamorig:RightToeBase"
+  ],
+  "weight_source": "MIA v2 with 36 graph-Laplacian smoothing passes below neck, normalized",
+  "weight_changed_vertices": 45826,
+  "coordinate_height": 3.0,
+  "tail": "Geometry retained, follows pelvis; no independent tail control",
+  "facial_rig": false,
+  "poses": {
+    "rest": {
+      "finite": true,
+      "max_motion": 0.0,
+      "edge_stretch_p99": 1.0,
+      "edges_over_3x": 0
+    },
+    "relaxed": {
+      "finite": true,
+      "max_motion": 0.5467279058405073,
+      "edge_stretch_p99": 1.1187910678965414,
+      "edges_over_3x": 6
+    },
+    "wave": {
+      "finite": true,
+      "max_motion": 0.546726395712823,
+      "edge_stretch_p99": 1.1432465879479956,
+      "edges_over_3x": 6
+    },
+    "elbows": {
+      "finite": true,
+      "max_motion": 0.7065006135271028,
+      "edge_stretch_p99": 1.240144196244836,
+      "edges_over_3x": 5
+    },
+    "left_step": {
+      "finite": true,
+      "max_motion": 0.5467279058405073,
+      "edge_stretch_p99": 1.1871267308782871,
+      "edges_over_3x": 6
+    },
+    "right_step": {
+      "finite": true,
+      "max_motion": 0.5467279058405073,
+      "edge_stretch_p99": 1.2033677033695442,
+      "edges_over_3x": 6
+    }
+  },
+  "geometry": {
+    "objects": {
+      "Lulu_Body": {
+        "verts": 99995,
+        "faces": 200002,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.490211867,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          2.5296,
+          1.8028,
+          3.0
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "info": [],
+    "units": "m",
+    "overall": {
+      "min": [
+        -1.2648217678070068,
+        -0.9013572931289673,
+        -1.3147345271136146e-05
+      ],
+      "max": [
+        1.2647603750228882,
+        0.9014410972595215,
+        2.9999752044677734
+      ],
+      "size": [
+        2.5295820236206055,
+        1.8027983903884888,
+        2.999988317489624
+      ],
+      "contact_tolerance": 0.004318425350987839,
+      "parts": 1
+    },
+    "contacts": [],
+    "summary": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (2.530, 1.803, 3.000)  parts: 1  contact tol: 0.0043\n  objects:\n    Lulu_Body: dims (2.530, 1.803, 3.000) verts 99995 faces 200002 islands 1"
+  }
+}

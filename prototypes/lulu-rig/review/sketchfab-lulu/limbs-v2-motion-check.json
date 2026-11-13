@@ -1,0 +1,18 @@
+{
+  "HumanWave": {
+    "target": "IndependentHandL",
+    "maximumDisplacement": 1.3017918899254555,
+    "minimumRequired": 0.6,
+    "seam": 0
+  },
+  "HumanSteps": {
+    "target": "IndependentLegL",
+    "maximumDisplacement": 0.24612787363040362,
+    "minimumRequired": 0.18,
+    "seam": 0
+  },
+  "supportLegDrift": {
+    "left": 7.450623562554881e-9,
+    "right": 7.450580818968433e-9
+  }
+}

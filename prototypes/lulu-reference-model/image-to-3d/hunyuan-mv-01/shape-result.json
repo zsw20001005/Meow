@@ -1,0 +1,31 @@
+[
+  {
+    "value": "D:\\coding\\Meow\\prototypes\\lulu-reference-model\\image-to-3d\\hunyuan-mv-01\\downloads\\ae60b55f9132cb2f9e8589e9dd8ac95cc65945ecf1e8092b83508457a64dd162\\white_mesh.glb",
+    "__type__": "update"
+  },
+  "\n        <div style='height: 690; width: 100%;'>\n        <iframe src=\"/static/dd23cda5-b491-484c-802c-250924c99bf6/white_mesh.html\" height=\"690\" width=\"100%\" frameborder=\"0\"></iframe>\n        </div>\n    ",
+  {
+    "model": {
+      "shapegen": "tencent/Hunyuan3D-2mv/hunyuan3d-dit-v2-mv-turbo",
+      "texgen": "tencent/Hunyuan3D-2"
+    },
+    "params": {
+      "caption": null,
+      "steps": 5,
+      "guidance_scale": 5.0,
+      "seed": 1234,
+      "octree_resolution": 384,
+      "check_box_rembg": true,
+      "num_chunks": 8000
+    },
+    "number_of_faces": 1311144,
+    "number_of_vertices": 343742,
+    "time": {
+      "remove background": 2.565704107284546,
+      "shape generation": 2.2023870944976807,
+      "export to trimesh": 0.1919689178466797,
+      "total": 4.962216138839722
+    }
+  },
+  1234
+]

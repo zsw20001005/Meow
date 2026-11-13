@@ -1,0 +1,123 @@
+{
+  "body_outside_eyes_unchanged": true,
+  "source_vertices": 249963,
+  "repaired_body_vertices": 242039,
+  "health": {
+    "objects": {
+      "Lulu — Spencer0131 — painted preview": {
+        "verts": 242039,
+        "faces": 484078,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 3.889688998,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          1.858,
+          1.5232,
+          3.0
+        ],
+        "islands": 1
+      },
+      "Eye L sclera": {
+        "verts": 2498,
+        "faces": 2560,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 0.001054317,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.1967,
+          0.1797,
+          0.2233
+        ],
+        "islands": 1
+      },
+      "Eye R sclera": {
+        "verts": 2498,
+        "faces": 2560,
+        "open_boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "loose_verts": 0,
+        "loose_edges": 0,
+        "degenerate_faces": 0,
+        "ngons": 0,
+        "closed": true,
+        "volume": 0.001053811,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          0.1967,
+          0.1904,
+          0.2233
+        ],
+        "islands": 1
+      }
+    },
+    "errors": [],
+    "warnings": [],
+    "info": [
+      "2 expected embedded contacts (expect_embedded)."
+    ],
+    "units": "m",
+    "overall": {
+      "min": [
+        -0.9289910793304443,
+        -0.7615928649902344,
+        0.0
+      ],
+      "max": [
+        0.9289910793304443,
+        0.7615928649902344,
+        3.0
+      ],
+      "size": [
+        1.8579821586608887,
+        1.5231857299804688,
+        3.0
+      ],
+      "contact_tolerance": 0.0038434610025574515,
+      "parts": 3
+    },
+    "contacts": [
+      {
+        "a": "Lulu — Spencer0131 — painted preview",
+        "b": "Eye L sclera",
+        "depth": 0.020564105361700058,
+        "expected": true
+      },
+      {
+        "a": "Lulu — Spencer0131 — painted preview",
+        "b": "Eye R sclera",
+        "depth": 0.02024075575172901,
+        "expected": true
+      }
+    ],
+    "summary": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "text": "GEOMETRY CHECK: 0 errors, 0 warnings\n  overall size (m): (1.858, 1.523, 3.000)  parts: 3  contact tol: 0.0038\n  [INFO] 2 expected embedded contacts (expect_embedded).\n  objects:\n    Lulu — Spencer0131 — painted preview: dims (1.858, 1.523, 3.000) verts 242039 faces 484078 islands 1\n    Eye L sclera: dims (0.197, 0.180, 0.223) verts 2498 faces 2560 islands 1\n    Eye R sclera: dims (0.197, 0.190, 0.223) verts 2498 faces 2560 islands 1"
+  },
+  "note": "Iris, pupil and catchlight are intentionally open surface layers; the closed sclera and body are checked."
+}

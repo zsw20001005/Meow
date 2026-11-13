@@ -51,6 +51,8 @@ git lfs pull
 
 模型及 GLB 使用 Git LFS。可重建的逐帧 PNG、重复下载、自动备份未上传，原电脑上的文件仍保留。
 
+本次也同步 Windows 客户端的未提交开发改动，以及 `prototypes/lulu-rig/`、`prototypes/shared-rig/`、`prototypes/lulu-reference-model/` 中的历史源模型、实验脚本和预览资料。历史版本用于追溯，继续本轮工作仍优先打开上面列出的五动作模型。完整检出包含数 GB 模型资料，需要等待 Git LFS 下载完成。应用构建入口见根目录 README；本地模型权重、编译产物和用户配置按原有规则单独准备。
+
 ## 当前限制与脚本
 
 当前是灰模身体动作原型，没有完整材质、面部表情或独立手指控制。Blender 的保体积蒙皮与关节平滑修正不能由标准 GLB 完整表达；`rigged/lulu-tpose-rigged-lbs.glb` 是兼容导出，只有早期关节测试动画，不能替代最新五动作 `.blend`。

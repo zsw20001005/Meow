@@ -1,0 +1,79 @@
+{
+  "name": "Lulu whole source sculpt with AI-reference accessories",
+  "units": "m",
+  "collection": "Lulu_Blockout",
+  "overall": {
+    "dims": [
+      null,
+      null,
+      3.22
+    ],
+    "tol": 0.12
+  },
+  "ground": true,
+  "contact_tolerance": 0.012,
+  "parts": {
+    "ReusedLulu": {
+      "dims": [
+        1.858,
+        1.523,
+        null
+      ],
+      "tol": 0.04
+    },
+    "Hair": {
+      "attached_to": [
+        "ReusedLulu"
+      ]
+    },
+    "HairFlow": {
+      "attached_to": [
+        "Hair"
+      ]
+    },
+    "Eye L sclera": {
+      "attached_to": [
+        "ReusedLulu"
+      ]
+    },
+    "Eye R sclera": {
+      "attached_to": [
+        "ReusedLulu"
+      ]
+    }
+  },
+  "expect_embedded": [
+    [
+      "ReusedLulu",
+      "Eye *"
+    ],
+    [
+      "ReusedLulu",
+      "Hair"
+    ],
+    [
+      "ReusedLulu",
+      "Temple.*"
+    ],
+    [
+      "ReusedLulu",
+      "Smile"
+    ],
+    [
+      "Hair",
+      "Cowlick"
+    ],
+    [
+      "Hair",
+      "HairFlow"
+    ],
+    [
+      "Frame.*",
+      "Temple.*"
+    ],
+    [
+      "Frame.*",
+      "Bridge"
+    ]
+  ]
+}

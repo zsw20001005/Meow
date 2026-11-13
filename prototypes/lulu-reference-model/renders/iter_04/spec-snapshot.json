@@ -1,0 +1,19 @@
+{
+  "name": "Lulu AI-reference proportion study",
+  "units": "m",
+  "collection": "Lulu_Blockout",
+  "overall": {"dims": [2.04, null, 3.43], "tol": 0.12},
+  "ground": true,
+  "contact_tolerance": 0.012,
+  "parts": {
+    "Head": {"dims": [1.88, 1.16, 1.46], "tol": 0.025, "attached_to": ["Body", "Muzzle"]},
+    "Muzzle": {"dims": [1.73, 0.78, 0.88], "tol": 0.025},
+    "HairFlow": {"attached_to": ["Hair"]},
+    "Shorts": {"attached_to": ["Body", "Leg.L", "Leg.R"]},
+    "Arm.L": {"attached_to": ["Body"]},
+    "Arm.R": {"attached_to": ["Body"]},
+    "Foot.L": {"attached_to": ["Leg.L"]},
+    "Foot.R": {"attached_to": ["Leg.R"]}
+  },
+  "expect_embedded": [["Head", "Body"], ["Head", "Muzzle"], ["Head", "Ear.*"], ["Ear.*", "InnerEar.*"], ["Head", "Eye.*"], ["Eye.*", "Iris.*"], ["Iris.*", "Pupil.*"], ["Pupil.*", "Highlight.*"], ["Head", "Hair"], ["Hair", "Cowlick"], ["Head", "Temple.*"], ["Frame.*", "Temple.*"], ["Frame.*", "Bridge"], ["Frame.*", "Muzzle"], ["Smile", "Muzzle"], ["Body", "Shorts"], ["Arm.*", "Body"], ["Arm.*", "Thumb.*"], ["Arm.*", "Shorts"], ["Shorts", "Leg.*"], ["Leg.*", "Foot.*"], ["Shorts", "Waistband"]]
+}

@@ -1,0 +1,116 @@
+{
+  "objects": {
+    "Lulu.Body": {
+      "verts": 265164,
+      "faces": 265162,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 3.67406637,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.933,
+        1.52,
+        2.7108
+      ],
+      "islands": 1
+    },
+    "Lulu.Arm.L": {
+      "verts": 33398,
+      "faces": 33396,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.045417195,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5408,
+        0.3393,
+        0.8507
+      ],
+      "islands": 1
+    },
+    "Lulu.Arm.R": {
+      "verts": 33398,
+      "faces": 33396,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.045417195,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5408,
+        0.3393,
+        0.8507
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "info": [
+    "Contacts: Lulu.Body-Lulu.Arm.L embedded 0.135 m; Lulu.Body-Lulu.Arm.R embedded 0.135 m"
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.9902908802032471,
+      -0.7586911916732788,
+      0.00022409956727642566
+    ],
+    "max": [
+      1.0085631608963013,
+      0.7612813711166382,
+      2.711022138595581
+    ],
+    "size": [
+      1.9988540410995483,
+      1.519972562789917,
+      2.7107980251312256
+    ],
+    "contact_tolerance": 0.0036951535858115014,
+    "parts": 3
+  },
+  "contacts": [
+    {
+      "a": "Lulu.Body",
+      "b": "Lulu.Arm.L",
+      "depth": 0.13531962037086487,
+      "expected": false
+    },
+    {
+      "a": "Lulu.Body",
+      "b": "Lulu.Arm.R",
+      "depth": 0.13524653017520905,
+      "expected": false
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  }
+}

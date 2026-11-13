@@ -1,0 +1,91 @@
+{
+  "objects": {
+    "Lulu.Body": {
+      "verts": 206207,
+      "faces": 412418,
+      "open_boundary_edges": 88,
+      "nonmanifold_edges": 35,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 6,
+      "ngons": 0,
+      "closed": false,
+      "volume": null,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        1.858,
+        1.5206,
+        2.7139
+      ],
+      "islands": 1
+    },
+    "Lulu.Arm.L": {
+      "verts": 19437,
+      "faces": 32342,
+      "open_boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "degenerate_faces": 0,
+      "ngons": 0,
+      "closed": true,
+      "volume": 0.038037174,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "dimensions": [
+        0.5513,
+        0.8122,
+        0.5843
+      ],
+      "islands": 1
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "Lulu.Body: 35 edges shared by >2 faces (non-manifold).",
+    "Lulu.Body: 6 zero-area faces."
+  ],
+  "info": [
+    "Lulu.Body: open mesh (88 boundary edges); fine for planes/cloth, bad for solids and 3D printing.",
+    "Contacts: Lulu.Body-Lulu.Arm.L embedded 0.155 m"
+  ],
+  "units": "m",
+  "overall": {
+    "min": [
+      -0.9289910793304443,
+      -0.7615928649902344,
+      0.0
+    ],
+    "max": [
+      0.9289910793304443,
+      0.7615928649902344,
+      2.713879346847534
+    ],
+    "size": [
+      1.8579821586608887,
+      1.5231857299804688,
+      2.713879346847534
+    ],
+    "contact_tolerance": 0.0036245459568195466,
+    "parts": 2
+  },
+  "contacts": [
+    {
+      "a": "Lulu.Body",
+      "b": "Lulu.Arm.L",
+      "depth": 0.155380979180336,
+      "expected": false
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2
+  }
+}

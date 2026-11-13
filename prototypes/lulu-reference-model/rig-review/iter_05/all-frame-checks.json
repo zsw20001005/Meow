@@ -1,0 +1,11 @@
+{
+  "frames": 121,
+  "fps": 30,
+  "max_foot_drift": 0,
+  "max_arm_step_per_frame": 0.081212767929764,
+  "hand_penetration_frames": [],
+  "arm_volume_ratio_min": 0.998519892077712,
+  "arm_volume_ratio_max": 1.0159125743999255,
+  "loop_position_error": 0.0,
+  "pass": true
+}

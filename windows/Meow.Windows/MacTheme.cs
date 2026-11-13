@@ -1,13 +1,11 @@
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace Meow.Windows;
 
-// Shared values come from the SwiftUI views, in device-independent points.
+// Preserve the character's palette while using native Windows window chrome.
 internal static class MacTheme
 {
     public static readonly Brush Paper = PetDrawing.B("#FFF9F0"), Cocoa = PetDrawing.B("#5C4536"), Accent = PetDrawing.B("#FA8CA1"), Muted = PetDrawing.B("#998579");
@@ -16,22 +14,13 @@ internal static class MacTheme
     {
         window.Title = title; window.Width = width; window.Height = height;
         window.FontFamily = Font; window.FontSize = 13; window.Foreground = Cocoa;
-        window.WindowStyle = WindowStyle.None; window.ResizeMode = ResizeMode.NoResize;
-        window.AllowsTransparency = true; window.Background = Brushes.Transparent;
+        window.WindowStyle = WindowStyle.SingleBorderWindow; window.ResizeMode = ResizeMode.CanResize;
+        window.MinWidth = width; window.MinHeight = Math.Min(height, 360);
+        window.AllowsTransparency = false; window.Background = Paper; window.ShowInTaskbar = true;
         TextOptions.SetTextFormattingMode(window, TextFormattingMode.Display);
         window.UseLayoutRounding = true; window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         window.Resources.MergedDictionaries.Add((ResourceDictionary)XamlReader.Parse(Resources));
-        var grid = new Grid { Background = Paper };
-        grid.Children.Add(content);
-        var chrome = new Grid { Height = 22, VerticalAlignment = VerticalAlignment.Top, Background = Brushes.Transparent };
-        chrome.MouseLeftButtonDown += (_, e) => { if (e.ButtonState == MouseButtonState.Pressed) window.DragMove(); };
-        var close = new Button { Width = 12, Height = 12, Padding = new Thickness(0), HorizontalAlignment = HorizontalAlignment.Left, VerticalAlignment = VerticalAlignment.Top, Margin = new Thickness(9, 7, 0, 0), Background = PetDrawing.B("#FF5F57"), BorderBrush = PetDrawing.B("#E0443E"), ToolTip = "关闭", Content = "", Focusable = false };
-        System.Windows.Automation.AutomationProperties.SetName(close, "关闭窗口");
-        close.Click += (_, _) => window.Close(); chrome.Children.Add(close); grid.Children.Add(chrome);
-        var frame = new Border { CornerRadius = new CornerRadius(10), Background = Paper, BorderBrush = PetDrawing.B("#D8CFC4"), BorderThickness = new Thickness(1), Child = grid };
-        frame.SizeChanged += (_, _) => grid.Clip = new RectangleGeometry(new Rect(0, 0, grid.ActualWidth, grid.ActualHeight), 9, 9);
-        window.Content = frame;
-        window.PreviewKeyDown += (_, e) => { if (e.Key == Key.Escape) window.Close(); };
+        window.Content = new Border { Background = Paper, Child = content };
     }
     public static Window Window(string title, double width, double height, UIElement content) { var w = new Window(); Shell(w, title, width, height, content); return w; }
     public static TextBlock Text(string text, double size = 13, bool bold = false) => new() { Text = text, FontSize = size, FontWeight = bold ? FontWeights.SemiBold : FontWeights.Normal, Foreground = Cocoa, TextWrapping = TextWrapping.Wrap };
@@ -43,7 +32,7 @@ internal static class MacTheme
     public static StackPanel Stack() => new();
     public static DockPanel Page(string title, out StackPanel head, out StackPanel foot)
     {
-        var p = new DockPanel { Margin = new Thickness(20, 38, 20, 20) };
+        var p = new DockPanel { Margin = new Thickness(20, 18, 20, 20) };
         head = new StackPanel(); DockPanel.SetDock(head, Dock.Top); p.Children.Add(head);
         var t = Text(title, 18, true); t.Margin = new Thickness(0, 0, 0, 12); head.Children.Add(t);
         foot = new StackPanel(); DockPanel.SetDock(foot, Dock.Bottom); p.Children.Add(foot); return p;

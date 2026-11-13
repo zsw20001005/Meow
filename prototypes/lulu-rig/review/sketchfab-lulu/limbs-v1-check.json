@@ -1,0 +1,80 @@
+{
+  "clips": {
+    "Idle": {
+      "duration": 6,
+      "maxMotion": 0.019132939965643914,
+      "seam": 0
+    },
+    "Greeting": {
+      "duration": 6,
+      "maxMotion": 0.19284736149212667,
+      "seam": 0
+    },
+    "Smile": {
+      "duration": 4,
+      "maxMotion": 0.11484269882955,
+      "seam": 0
+    },
+    "Curious": {
+      "duration": 4,
+      "maxMotion": 0.1660104731420751,
+      "seam": 0
+    },
+    "Arms": {
+      "duration": 5,
+      "maxMotion": 0.15796237992320666,
+      "seam": 0
+    },
+    "Legs": {
+      "duration": 5,
+      "maxMotion": 0.08945155908195361,
+      "seam": 0
+    },
+    "Steps": {
+      "duration": 6,
+      "maxMotion": 0.08701492744373551,
+      "seam": 0
+    }
+  },
+  "transitions": [
+    {
+      "to": "Arms",
+      "jump": 0
+    },
+    {
+      "to": "Legs",
+      "jump": 0
+    },
+    {
+      "to": "Steps",
+      "jump": 0
+    },
+    {
+      "to": "Arms",
+      "jump": 0
+    },
+    {
+      "to": "Idle",
+      "jump": 0
+    }
+  ],
+  "performance": {
+    "earlyGaze": 0.9948979616165161,
+    "earlySmile": 0,
+    "heldSmile": 1
+  },
+  "joints": {
+    "UpperArm.L": 0.13174648828124566,
+    "Forearm.L": 0.12148358469753956,
+    "Hand.L": 0.04500151004258463,
+    "UpperArm.R": 0.13503111608724092,
+    "Forearm.R": 0.06897243496434867,
+    "Hand.R": 0.01759489238497805,
+    "Thigh.L": 0.186552821039365,
+    "Shin.L": 0.19201544811928334,
+    "Foot.L": 0.11330642100004758,
+    "Thigh.R": 0.17061144809359816,
+    "Shin.R": 0.1646658826020194,
+    "Foot.R": 0.0745867584942836
+  }
+}

@@ -1,0 +1,53 @@
+2026-11-13 — Free multi-view Lulu trial
+
+APPROVED INPUT
+../references-v2/lulu-turnaround-v3-tail.png
+The character HAS a small yellow rump tail. Preserve it.
+Front/back/left quadrants submitted; three-quarter retained for visual review.
+Only lossless quadrant extraction was performed on the approved raster input.
+
+GENERATION
+Official Tencent Hunyuan3D-2mv Turbo public ZeroGPU Space.
+https://huggingface.co/spaces/tencent/Hunyuan3D-2mv
+Textured generation was refused before inference (135 seconds requested, 69 seconds available).
+Shape-only generation succeeded with steps=5, guidance=5, seed=1234, resolution=384.
+No subscription or paid compute purchased.
+
+LOCAL DELIVERABLES
+lulu-hunyuan-raw.glb: original unmodified downloaded static geometry.
+lulu-hunyuan-source.blend: normalized Blender inspection scene, static geometry.
+review/clay_sheet.png: actual four-view Blender render, not generated concept art.
+lulu-rig-input.glb: 120000-face reduced static model for rigging trial; NOT RIGGED.
+Original imported geometry: 343742 vertices, 687496 triangles. Server stats count differently (see shape-result.json).
+Local checks: 0 errors, 1 warning (18 zero-area faces); source preserved. Degenerate edges cleaned before reduction in rigging input.
+
+VISUAL REVIEW
+Tail retained and visible from back/side. Main head/body silhouette reproduced.
+Eye and mouth details are soft; hair has low-detail soft grooves.
+Arms touch torso, so natural shoulder deformation is not established.
+No colour/texture generated in successful shape-only run.
+
+RIGGING
+Official Make-It-Animatable v2 demo.
+https://huggingface.co/spaces/jasongzy/Make-It-Animatable-v2
+One attempt with reduced GLB was rejected by ZeroGPU anonymous runs limit.
+The anonymous attempt produced no rig. Subsequently the authenticated browser UI succeeded in 32.06 seconds.
+Downloaded original rigged output to rigged/lulu-mia-rigged.glb (2889796 bytes).
+Blender import saved separately to rigged/lulu-mia-rigged.blend.
+Mesh has 59994 vertices and 120000 triangles; all mesh vertices have normalized skin weights.
+No facial shape keys. No dedicated tail bone. Extra Icosphere is a non-deforming helper, not the character.
+Geometry validation: 0 errors, 0 warnings. This does NOT certify good deformation.
+Actual four-view render shows severe stretched webbing under both arms after automatic rest-pose conversion.
+20-degree arm and upper-leg rotation tests move the associated mesh vertices: see rigged/motion-check.json.
+Two-second diagnostic animation: rigged/motion-diagnostic.gif; editable diagnostic scene: rigged/lulu-motion-diagnostic.blend.
+Diagnostic motion is NOT a finished walk animation. This rig is not approved for deployment.
+
+NEXT
+User requested expanded-limb image references to reduce fused geometry.
+Prepare consistent A-pose and T-pose turnarounds separately, preserve tail and approved character identity.
+Built-in image generation connection failed. Continued via already logged-in Google Flow, Nano Banana 2.1, displayed 0 credits per image.
+Generated and downloaded A-pose and T-pose four-view sheets to ../references-v2/lulu-a-pose-turnaround-v1.jpg and lulu-t-pose-turnaround-v1.jpg.
+T-pose visually preferred: arms fully horizontal and armpits exposed; A-pose remains closer to torso.
+Both retain approved identity and tail. Each sheet split into separate view PNGs. No new 3D reconstruction yet.
+Prompts saved in ../references-v2/rig-pose-prompts.txt. Reconstruct from one consistent pose set before rigging again.
+No existing desktop pet assets or prior character models were replaced.
